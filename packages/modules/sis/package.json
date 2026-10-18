@@ -1,0 +1,9 @@
+{
+  "name": "@schools/module-sis",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "description": "Authoritative Student Information System (SIS) domain module owning Student, Guardian, Enrollment, Placement, Transfer, Withdrawal, Graduation, and Document Vault"
+}

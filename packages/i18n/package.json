@@ -1,0 +1,9 @@
+{
+  "name": "@schools/i18n",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "description": "Bilingual Arabic (RTL) & English (LTR) localization registry and LanguageProvider for Schools Systems ERP"
+}

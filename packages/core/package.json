@@ -1,0 +1,9 @@
+{
+  "name": "@schools/core",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "description": "Core cross-cutting services, admin stores, theme, export, logger, and security utils"
+}

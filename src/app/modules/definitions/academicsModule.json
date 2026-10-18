@@ -1,0 +1,154 @@
+{
+  "id": "academics",
+  "code": "MOD-ACAD-02",
+  "name": "Academics & Curriculum",
+  "label": "Academics & Curriculum",
+  "shortName": "Academics",
+  "category": "Curriculum & Instruction",
+  "version": "1.8.2",
+  "status": "active",
+  "description": "Authoritative institutional catalog for academic courses, subject syllabi, class sections, and faculty teaching assignments.",
+  "icon": "Catalog",
+  "authoritativeEntities": ["courses", "sections", "subjects"],
+  "primaryEntity": "courses",
+  "entities": [
+    {
+      "name": "courses",
+      "label": "Course",
+      "labelPlural": "Courses",
+      "isPrimary": true,
+      "icon": "Education",
+      "description": "Master catalog of approved institutional courses, credit hours, and department affiliations.",
+      "schema": {
+        "resource": "courses",
+        "label": "Course",
+        "labelPlural": "Courses",
+        "fields": [
+          { "name": "courseCode", "type": "text", "label": "Course Code", "required": true, "colSpan": 6 },
+          { "name": "title", "type": "text", "label": "Course Title", "required": true, "colSpan": 6 },
+          { "name": "department", "type": "select", "label": "Department", "required": true, "colSpan": 6, "options": [
+            { "label": "Mathematics & Computing", "value": "Mathematics" },
+            { "label": "Natural Sciences", "value": "Sciences" },
+            { "label": "Humanities & Literature", "value": "Humanities" },
+            { "label": "Fine Arts & Music", "value": "Arts" }
+          ]},
+          { "name": "credits", "type": "number", "label": "Credit Units", "required": true, "colSpan": 6 },
+          { "name": "level", "type": "select", "label": "Academic Level", "colSpan": 6, "options": [
+            { "label": "Foundational / Standard", "value": "Standard" },
+            { "label": "Honors", "value": "Honors" },
+            { "label": "Advanced Placement (AP)", "value": "AP" }
+          ]},
+          { "name": "status", "type": "select", "label": "Status", "required": true, "colSpan": 6, "options": [
+            { "label": "Active Catalog", "value": "active" },
+            { "label": "Under Revision", "value": "pending" },
+            { "label": "Archived", "value": "inactive" }
+          ]},
+          { "name": "description", "type": "textarea", "label": "Syllabus Overview", "colSpan": 12 }
+        ]
+      },
+      "columns": [
+        { "key": "courseCode", "header": "Code", "sortable": true, "width": "120px" },
+        { "key": "title", "header": "Course Title", "sortable": true },
+        { "key": "department", "header": "Department", "sortable": true, "width": "160px" },
+        { "key": "level", "header": "Level", "sortable": true, "width": "120px" },
+        { "key": "credits", "header": "Credits", "sortable": true, "width": "100px" },
+        { "key": "status", "header": "Status", "sortable": true, "width": "110px" }
+      ],
+      "defaultData": [
+        { "id": "1", "courseCode": "MATH-301", "name": "AP Calculus BC", "title": "AP Calculus BC", "department": "Mathematics", "credits": 4, "level": "AP", "status": "active", "description": "Differential and integral calculus, sequence convergence, Taylor polynomials." },
+        { "id": "2", "courseCode": "PHYS-202", "name": "Honors Physics & Lab", "title": "Honors Physics & Lab", "department": "Sciences", "credits": 4, "level": "Honors", "status": "active", "description": "Classical mechanics, electrodynamics, optics, and quantitative lab methods." },
+        { "id": "3", "courseCode": "ENG-401", "name": "World Literature & Rhetoric", "title": "World Literature & Rhetoric", "department": "Humanities", "credits": 3, "level": "Standard", "status": "active", "description": "Comparative literary analysis, critical essays, and argumentative rhetoric." },
+        { "id": "4", "courseCode": "CS-101", "name": "Intro to Computer Science", "title": "Intro to Computer Science", "department": "Mathematics", "credits": 3, "level": "Honors", "status": "active", "description": "Algorithms, data structures, and object-oriented software principles." }
+      ]
+    },
+    {
+      "name": "sections",
+      "label": "Class Section",
+      "labelPlural": "Class Sections",
+      "isPrimary": false,
+      "icon": "Building",
+      "description": "Scheduled period sections, room locations, enrolled capacity, and primary instructor assignments.",
+      "schema": {
+        "resource": "sections",
+        "label": "Class Section",
+        "labelPlural": "Class Sections",
+        "fields": [
+          { "name": "sectionCode", "type": "text", "label": "Section Code", "required": true, "colSpan": 6 },
+          { "name": "courseName", "type": "text", "label": "Course", "required": true, "colSpan": 6 },
+          { "name": "instructor", "type": "text", "label": "Assigned Instructor", "required": true, "colSpan": 6 },
+          { "name": "room", "type": "text", "label": "Room / Lab", "required": true, "colSpan": 6 },
+          { "name": "schedule", "type": "text", "label": "Weekly Schedule", "colSpan": 6 },
+          { "name": "enrolled", "type": "number", "label": "Current Enrolled", "colSpan": 3 },
+          { "name": "capacity", "type": "number", "label": "Max Capacity", "colSpan": 3 }
+        ]
+      },
+      "columns": [
+        { "key": "sectionCode", "header": "Section", "sortable": true, "width": "120px" },
+        { "key": "courseName", "header": "Course", "sortable": true },
+        { "key": "instructor", "header": "Instructor", "sortable": true, "width": "160px" },
+        { "key": "room", "header": "Room", "sortable": true, "width": "110px" },
+        { "key": "schedule", "header": "Schedule", "sortable": true, "width": "140px" },
+        { "key": "enrolled", "header": "Enrollment", "sortable": true, "width": "120px" }
+      ],
+      "defaultData": [
+        { "id": "1", "sectionCode": "SEC-MATH-A", "name": "AP Calc BC (Sec A)", "courseName": "AP Calculus BC", "instructor": "Dr. Eleanor Vance", "room": "Room 304", "schedule": "MWF 09:00 - 10:15", "enrolled": 24, "capacity": 28 },
+        { "id": "2", "sectionCode": "SEC-MATH-B", "name": "AP Calc BC (Sec B)", "courseName": "AP Calculus BC", "instructor": "Dr. Eleanor Vance", "room": "Room 304", "schedule": "TTh 10:30 - 12:00", "enrolled": 26, "capacity": 28 },
+        { "id": "3", "sectionCode": "SEC-PHYS-A", "name": "Honors Physics (Sec A)", "courseName": "Honors Physics & Lab", "instructor": "Prof. Harold Finch", "room": "Science Lab 2", "schedule": "MWF 11:00 - 12:15", "enrolled": 22, "capacity": 24 },
+        { "id": "4", "sectionCode": "SEC-CS-A", "name": "Intro CS (Sec A)", "courseName": "Intro to Computer Science", "instructor": "Sarah Jenkins", "room": "Turing Lab 1", "schedule": "TTh 13:00 - 14:30", "enrolled": 25, "capacity": 25 }
+      ]
+    },
+    {
+      "name": "subjects",
+      "label": "Curricular Subject",
+      "labelPlural": "Curricular Subjects",
+      "isPrimary": false,
+      "icon": "Education",
+      "description": "Standardized subject domains, curriculum framework versions, and learning outcomes.",
+      "schema": {
+        "resource": "subjects",
+        "label": "Subject",
+        "labelPlural": "Subjects",
+        "fields": [
+          { "name": "subjectCode", "type": "text", "label": "Subject Code", "required": true, "colSpan": 6 },
+          { "name": "subjectName", "type": "text", "label": "Subject Name", "required": true, "colSpan": 6 },
+          { "name": "department", "type": "text", "label": "Department", "required": true, "colSpan": 6 },
+          { "name": "learningGoalsCount", "type": "number", "label": "Benchmarked Standards Count", "colSpan": 6 }
+        ]
+      },
+      "columns": [
+        { "key": "subjectCode", "header": "Subject Code", "sortable": true, "width": "140px" },
+        { "key": "subjectName", "header": "Subject Name", "sortable": true },
+        { "key": "department", "header": "Department", "sortable": true, "width": "180px" },
+        { "key": "learningGoalsCount", "header": "Standards Count", "sortable": true, "width": "150px" }
+      ],
+      "defaultData": [
+        { "id": "1", "name": "Calculus & Analytical Geometry", "subjectCode": "SUB-MATH-CALC", "subjectName": "Calculus & Analytical Geometry", "department": "Mathematics", "learningGoalsCount": 32 },
+        { "id": "2", "name": "Classical Newtonian Mechanics", "subjectCode": "SUB-SCI-PHYS", "subjectName": "Classical Newtonian Mechanics", "department": "Sciences", "learningGoalsCount": 28 },
+        { "id": "3", "name": "Computational Thinking & Syntax", "subjectCode": "SUB-CS-PROG", "subjectName": "Computational Thinking & Syntax", "department": "Mathematics", "learningGoalsCount": 24 }
+      ]
+    }
+  ],
+  "settings": {
+    "general": {
+      "academicYear": "2026-2027",
+      "curriculumFramework": "IB & AP Dual Standard",
+      "defaultViewMode": "table",
+      "allowQuickInlineEdit": true
+    },
+    "scheduling": {
+      "defaultSectionCapacity": 25,
+      "allowSectionOverload": false,
+      "maxOverloadPercent": 10
+    },
+    "grading": {
+      "gradeScale": "Standard 4.0 Weighted",
+      "passFailCutoff": 65,
+      "publishGradesToPortal": true
+    },
+    "governance": {
+      "requireCurriculumCommitteeApproval": true,
+      "enableAuditLogging": true,
+      "archiveRetentionYears": 10
+    }
+  }
+}

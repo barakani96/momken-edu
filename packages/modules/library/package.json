@@ -1,0 +1,9 @@
+{
+  "name": "@schools/module-library",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "description": "Authoritative Library Catalog, Book Circulation & Campus Services module"
+}

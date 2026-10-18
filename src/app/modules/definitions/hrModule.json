@@ -1,0 +1,186 @@
+{
+  "id": "hr",
+  "code": "MOD-HR-01",
+  "name": "HR & Faculty Management",
+  "label": "HR & Faculty Management",
+  "shortName": "HR",
+  "category": "Institutional Operations",
+  "version": "1.6.0",
+  "status": "active",
+  "description": "Authoritative institutional personnel system for managing faculty profiles, departmental hierarchies, compensation, and leave tracking.",
+  "icon": "UserAdmin",
+  "authoritativeEntities": ["faculty", "departments", "payroll", "leaves"],
+  "primaryEntity": "faculty",
+  "entities": [
+    {
+      "name": "faculty",
+      "label": "Faculty & Staff Member",
+      "labelPlural": "Faculty & Staff",
+      "isPrimary": true,
+      "icon": "User",
+      "description": "Authoritative directory of professors, teachers, administrative staff, and instructional specialists.",
+      "schema": {
+        "resource": "faculty",
+        "label": "Faculty Member",
+        "labelPlural": "Faculty & Staff",
+        "fields": [
+          { "name": "facultyId", "type": "text", "label": "Staff ID", "required": true, "colSpan": 6 },
+          { "name": "name", "type": "text", "label": "Full Name", "required": true, "colSpan": 6 },
+          { "name": "department", "type": "select", "label": "Department", "required": true, "colSpan": 6, "options": [
+            { "label": "Computer Science & Engineering", "value": "Computer Science" },
+            { "label": "Mathematics & Statistics", "value": "Mathematics" },
+            { "label": "Natural Sciences", "value": "Natural Sciences" },
+            { "label": "Humanities & Social Sciences", "value": "Humanities" },
+            { "label": "Physical Education", "value": "Athletics" }
+          ]},
+          { "name": "role", "type": "select", "label": "Academic Title / Role", "required": true, "colSpan": 6, "options": [
+            { "label": "Department Chair", "value": "Department Chair" },
+            { "label": "Senior Professor", "value": "Senior Professor" },
+            { "label": "Associate Professor", "value": "Associate Professor" },
+            { "label": "Assistant Teacher", "value": "Assistant Teacher" },
+            { "label": "Lab Instructor", "value": "Lab Instructor" }
+          ]},
+          { "name": "email", "type": "email", "label": "Institutional Email", "required": true, "colSpan": 6 },
+          { "name": "phone", "type": "phone", "label": "Direct Extension / Phone", "colSpan": 6 },
+          { "name": "employmentStatus", "type": "select", "label": "Employment Status", "required": true, "colSpan": 6, "options": [
+            { "label": "Full-Time Permanent", "value": "Full-Time" },
+            { "label": "Part-Time Faculty", "value": "Part-Time" },
+            { "label": "Adjunct Instructor", "value": "Adjunct" },
+            { "label": "On Sabbatical", "value": "Sabbatical" }
+          ]},
+          { "name": "hireDate", "type": "date", "label": "Date of Hire", "required": true, "colSpan": 6 }
+        ]
+      },
+      "columns": [
+        { "key": "facultyId", "header": "Staff ID", "sortable": true, "width": "120px" },
+        { "key": "name", "header": "Full Name", "sortable": true },
+        { "key": "department", "header": "Department", "sortable": true, "width": "180px" },
+        { "key": "role", "header": "Title / Role", "sortable": true, "width": "160px" },
+        { "key": "employmentStatus", "header": "Status", "sortable": true, "width": "120px" },
+        { "key": "hireDate", "header": "Hire Date", "sortable": true, "width": "120px" }
+      ],
+      "defaultData": [
+        { "id": "1", "facultyId": "FAC-0101", "name": "Dr. Eleanor Vance", "department": "Natural Sciences", "role": "Department Chair", "email": "e.vance@school.edu", "phone": "+1 (555) 100-2001", "employmentStatus": "Full-Time", "hireDate": "2018-08-15" },
+        { "id": "2", "facultyId": "FAC-0102", "name": "Prof. Marcus Brody", "department": "Mathematics", "role": "Senior Professor", "email": "m.brody@school.edu", "phone": "+1 (555) 100-2002", "employmentStatus": "Full-Time", "hireDate": "2019-01-10" },
+        { "id": "3", "facultyId": "FAC-0103", "name": "Dr. Sarah Lin", "department": "Computer Science", "role": "Department Chair", "email": "s.lin@school.edu", "phone": "+1 (555) 100-2003", "employmentStatus": "Full-Time", "hireDate": "2020-08-20" },
+        { "id": "4", "facultyId": "FAC-0104", "name": "Prof. Julian Reyes", "department": "Humanities", "role": "Associate Professor", "email": "j.reyes@school.edu", "phone": "+1 (555) 100-2004", "employmentStatus": "Full-Time", "hireDate": "2021-08-15" },
+        { "id": "5", "facultyId": "FAC-0105", "name": "Claire Dupont", "department": "Computer Science", "role": "Lab Instructor", "email": "c.dupont@school.edu", "phone": "+1 (555) 100-2005", "employmentStatus": "Part-Time", "hireDate": "2023-01-15" }
+      ]
+    },
+    {
+      "name": "departments",
+      "label": "Academic Department",
+      "labelPlural": "Departments",
+      "isPrimary": false,
+      "icon": "Enterprise",
+      "description": "Academic divisions, department chairs, budget allocations, and faculty headcounts.",
+      "schema": {
+        "resource": "departments",
+        "label": "Department",
+        "labelPlural": "Departments",
+        "fields": [
+          { "name": "code", "type": "text", "label": "Dept Code", "required": true, "colSpan": 6 },
+          { "name": "name", "type": "text", "label": "Department Name", "required": true, "colSpan": 6 },
+          { "name": "chair", "type": "text", "label": "Department Chair", "required": true, "colSpan": 6 },
+          { "name": "budget", "type": "currency", "label": "Annual Operating Budget ($)", "required": true, "colSpan": 6 },
+          { "name": "headcount", "type": "number", "label": "Faculty Headcount", "colSpan": 6 }
+        ]
+      },
+      "columns": [
+        { "key": "code", "header": "Dept Code", "sortable": true, "width": "120px" },
+        { "key": "name", "header": "Department Name", "sortable": true },
+        { "key": "chair", "header": "Chair", "sortable": true, "width": "160px" },
+        { "key": "budget", "header": "Budget ($)", "sortable": true, "width": "130px" },
+        { "key": "headcount", "header": "Headcount", "sortable": true, "width": "110px" }
+      ],
+      "defaultData": [
+        { "id": "1", "code": "DEPT-CS", "name": "Computer Science & Engineering", "chair": "Dr. Sarah Lin", "budget": 450000, "headcount": 14 },
+        { "id": "2", "code": "DEPT-MATH", "name": "Mathematics & Statistics", "chair": "Prof. Marcus Brody", "budget": 320000, "headcount": 11 },
+        { "id": "3", "code": "DEPT-SCI", "name": "Natural Sciences", "chair": "Dr. Eleanor Vance", "budget": 580000, "headcount": 18 },
+        { "id": "4", "code": "DEPT-HUM", "name": "Humanities & Social Sciences", "chair": "Prof. Julian Reyes", "budget": 290000, "headcount": 9 }
+      ]
+    },
+    {
+      "name": "payroll",
+      "label": "Payroll Disbursement",
+      "labelPlural": "Payroll Records",
+      "isPrimary": false,
+      "icon": "Finance",
+      "description": "Monthly faculty salary disbursements, tax deductions, and benefits accounting.",
+      "schema": {
+        "resource": "payroll",
+        "label": "Payroll Record",
+        "labelPlural": "Payroll Records",
+        "fields": [
+          { "name": "payrollRef", "type": "text", "label": "Pay Slip #", "required": true, "colSpan": 6 },
+          { "name": "facultyName", "type": "text", "label": "Faculty Name", "required": true, "colSpan": 6 },
+          { "name": "payPeriod", "type": "text", "label": "Pay Period", "required": true, "colSpan": 6 },
+          { "name": "grossSalary", "type": "currency", "label": "Gross Salary ($)", "required": true, "colSpan": 6 },
+          { "name": "netSalary", "type": "currency", "label": "Net Salary ($)", "required": true, "colSpan": 6 },
+          { "name": "status", "type": "select", "label": "Payment Status", "required": true, "colSpan": 6, "options": [
+            { "label": "Disbursed", "value": "disbursed" },
+            { "label": "Approved", "value": "approved" },
+            { "label": "Draft", "value": "draft" }
+          ]}
+        ]
+      },
+      "columns": [
+        { "key": "payrollRef", "header": "Pay Slip #", "sortable": true, "width": "130px" },
+        { "key": "facultyName", "header": "Faculty Member", "sortable": true },
+        { "key": "payPeriod", "header": "Period", "sortable": true, "width": "130px" },
+        { "key": "grossSalary", "header": "Gross ($)", "sortable": true, "width": "110px" },
+        { "key": "netSalary", "header": "Net ($)", "sortable": true, "width": "110px" },
+        { "key": "status", "header": "Status", "sortable": true, "width": "120px" }
+      ],
+      "defaultData": [
+        { "id": "1", "payrollRef": "PAY-2026-08-01", "facultyName": "Dr. Eleanor Vance", "payPeriod": "August 2026", "grossSalary": 8500, "netSalary": 6450, "status": "disbursed" },
+        { "id": "2", "payrollRef": "PAY-2026-08-02", "facultyName": "Prof. Marcus Brody", "payPeriod": "August 2026", "grossSalary": 7800, "netSalary": 5920, "status": "disbursed" },
+        { "id": "3", "payrollRef": "PAY-2026-08-03", "facultyName": "Dr. Sarah Lin", "payPeriod": "August 2026", "grossSalary": 8900, "netSalary": 6780, "status": "disbursed" },
+        { "id": "4", "payrollRef": "PAY-2026-08-04", "facultyName": "Prof. Julian Reyes", "payPeriod": "August 2026", "grossSalary": 7200, "netSalary": 5460, "status": "disbursed" }
+      ]
+    },
+    {
+      "name": "leaves",
+      "label": "Leave Request",
+      "labelPlural": "Leave Requests",
+      "isPrimary": false,
+      "icon": "Calendar",
+      "description": "Faculty time-off requests, sabbaticals, medical leaves, and conference attendance approvals.",
+      "schema": {
+        "resource": "leaves",
+        "label": "Leave Request",
+        "labelPlural": "Leave Requests",
+        "fields": [
+          { "name": "leaveId", "type": "text", "label": "Request #", "required": true, "colSpan": 6 },
+          { "name": "facultyName", "type": "text", "label": "Faculty Member", "required": true, "colSpan": 6 },
+          { "name": "leaveType", "type": "select", "label": "Leave Type", "required": true, "colSpan": 6, "options": [
+            { "label": "Academic Conference / Research", "value": "Conference" },
+            { "label": "Annual Paid Vacation", "value": "Vacation" },
+            { "label": "Medical / Sick Leave", "value": "Medical" },
+            { "label": "Sabbatical Term", "value": "Sabbatical" }
+          ]},
+          { "name": "startDate", "type": "date", "label": "Start Date", "required": true, "colSpan": 6 },
+          { "name": "endDate", "type": "date", "label": "End Date", "required": true, "colSpan": 6 },
+          { "name": "status", "type": "select", "label": "Approval Status", "required": true, "colSpan": 6, "options": [
+            { "label": "Approved", "value": "approved" },
+            { "label": "Pending Department Review", "value": "pending" },
+            { "label": "Declined", "value": "declined" }
+          ]}
+        ]
+      },
+      "columns": [
+        { "key": "leaveId", "header": "Request #", "sortable": true, "width": "120px" },
+        { "key": "facultyName", "header": "Faculty Member", "sortable": true },
+        { "key": "leaveType", "header": "Type", "sortable": true, "width": "140px" },
+        { "key": "startDate", "header": "Start", "sortable": true, "width": "120px" },
+        { "key": "endDate", "header": "End", "sortable": true, "width": "120px" },
+        { "key": "status", "header": "Status", "sortable": true, "width": "120px" }
+      ],
+      "defaultData": [
+        { "id": "1", "leaveId": "LEV-401", "facultyName": "Dr. Sarah Lin", "leaveType": "Conference", "startDate": "2026-10-10", "endDate": "2026-10-14", "status": "approved" },
+        { "id": "2", "leaveId": "LEV-402", "facultyName": "Prof. Marcus Brody", "leaveType": "Medical", "startDate": "2026-09-15", "endDate": "2026-09-18", "status": "approved" },
+        { "id": "3", "leaveId": "LEV-403", "facultyName": "Claire Dupont", "leaveType": "Vacation", "startDate": "2026-11-20", "endDate": "2026-11-25", "status": "pending" }
+      ]
+    }
+  ]
+}

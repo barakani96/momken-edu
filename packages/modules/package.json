@@ -1,0 +1,9 @@
+{
+  "name": "@schools/modules",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "description": "Modular institutional applications (SIS, Finance, HR, Academics, Library) registry for Schools Systems ERP"
+}

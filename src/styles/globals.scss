@@ -1,0 +1,1109 @@
+@use '@carbon/react';
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap');
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--cds-background);
+  color: var(--cds-text-primary);
+  -webkit-tap-highlight-color: transparent;
+}
+
+// Ensure proper RTL styling and apply Arabic display and body fonts
+html[dir="rtl"] {
+  direction: rtl;
+  --cds-font-family: 'IBM Plex Sans Arabic', 'IBM Plex Sans', sans-serif !important;
+  --cds-body-font-family: 'IBM Plex Sans Arabic', 'IBM Plex Sans', sans-serif !important;
+  --cds-code-font-family: monospace !important;
+}
+
+html[dir="rtl"],
+html[dir="rtl"] body,
+html[dir="rtl"] input,
+html[dir="rtl"] textarea,
+html[dir="rtl"] select,
+html[dir="rtl"] button,
+html[dir="rtl"] .cds--btn,
+html[dir="rtl"] .cds--header,
+html[dir="rtl"] .cds--side-nav,
+html[dir="rtl"] .cds--data-table,
+html[dir="rtl"] .cds--dropdown,
+html[dir="rtl"] .cds--modal-container,
+html[dir="rtl"] .cds--text-input,
+html[dir="rtl"] .cds--select,
+html[dir="rtl"] .cds--tag,
+html[dir="rtl"] .cds--pagination,
+html[dir="rtl"] .cds--table-header,
+html[dir="rtl"] .cds--tabs__nav-link,
+html[dir="rtl"] .cds--search-input,
+html[dir="rtl"] .admin-page-title,
+html[dir="rtl"] .admin-page-description {
+  font-family: 'IBM Plex Sans Arabic', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+}
+
+/* ==========================================================================
+   Responsive Shell & Layout Enhancements for Mobile Devices
+   ========================================================================== */
+
+/* Main Content Area & Carbon SideNav Responsive Layout */
+.app-main-content,
+.cds--content {
+  box-sizing: border-box;
+  min-height: calc(100vh - 3rem);
+  min-height: calc(100dvh - 3rem);
+  overflow-x: hidden;
+  padding: 0 !important;
+  padding-bottom: max(1.5rem, env(safe-area-inset-bottom)) !important;
+}
+
+/* On mobile & tablet (< 66rem), SideNav acts as an overlay drawer so Content takes full width with 0 margin */
+@media (max-width: 65.999rem) {
+  .app-main-content,
+  .cds--content,
+  .cds--side-nav ~ .cds--content,
+  .cds--side-nav--fixed ~ .cds--content,
+  .cds--side-nav--rail ~ .cds--content,
+  .cds--side-nav--expanded ~ .cds--content,
+  .cds--side-nav--collapsed ~ .cds--content {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-inline: 0 !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+  }
+}
+
+/* SideNav Section Header hiding when rail is collapsed */
+.cds--side-nav--rail:not(.cds--side-nav--expanded):not(:hover) {
+  .side-nav-section-header,
+  .cds--side-nav__divider {
+    opacity: 0;
+    height: 0;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden;
+    pointer-events: none;
+  }
+}
+
+/* Comprehensive RTL Support for Carbon SideNav */
+html[dir="rtl"] {
+  .cds--side-nav {
+    right: 0 !important;
+    left: auto !important;
+    border-left: 1px solid var(--cds-border-subtle, #e0e0e0);
+    border-right: none;
+    direction: rtl;
+    text-align: right;
+  }
+
+  .cds--side-nav__items {
+    direction: rtl;
+    text-align: right;
+  }
+
+  .cds--side-nav__link,
+  .cds--side-nav__submenu {
+    direction: rtl !important;
+    text-align: right !important;
+    padding-inline-start: 1rem !important;
+    padding-inline-end: 1rem !important;
+  }
+
+  .cds--side-nav__icon {
+    margin-right: 0 !important;
+    margin-left: 0.75rem !important;
+    flex-shrink: 0;
+  }
+
+  .cds--side-nav__link-text,
+  .cds--side-nav__submenu-title {
+    direction: rtl !important;
+    text-align: right !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .cds--side-nav__submenu-chevron {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+    padding-left: 0 !important;
+  }
+
+  .cds--side-nav__menu .cds--side-nav__link {
+    padding-right: 2.75rem !important;
+    padding-left: 1rem !important;
+  }
+}
+
+/* Global Mobile Zero-Margin & Balanced Gutter Rules for All Shell & Dynamic Layout Containers */
+@media (max-width: 41.999rem) {
+  html, body, #root {
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden;
+  }
+
+  /* Grid & Column Resets: eliminate horizontal margin overhangs on mobile while maintaining a 16px (1rem) outer container gutter */
+  .cds--grid,
+  .cds--grid--full-width,
+  .cds--grid--condensed,
+  .cds--grid--narrow {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-inline: 0 !important;
+    padding-inline: 0.75rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Prevent double padding when Carbon Grids are nested inside another Grid */
+  .cds--grid .cds--grid,
+  .cds--row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-inline: 0 !important;
+    padding-inline: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .cds--col,
+  [class*="cds--col"] {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-inline: 0 !important;
+    padding-inline: 0.25rem !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Mobile SideNav Drawer z-index & bottom clearance for MobileBottomNav */
+  .cds--side-nav {
+    z-index: 6000 !important;
+    padding-bottom: 4rem !important;
+  }
+
+  /* Horizontal Touch Scrolling for Carbon Tabs & Breadcrumbs on Mobile */
+  .cds--tabs,
+  .cds--tab--list {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex-wrap: nowrap !important;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .cds--tabs__nav-item,
+  .cds--tabs__nav-link {
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+  }
+
+  .cds--breadcrumb {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .cds--breadcrumb-item {
+      white-space: nowrap !important;
+      flex-shrink: 0 !important;
+    }
+  }
+
+  /* Mobile TableToolbar responsive wrapping */
+  .cds--table-toolbar {
+    height: auto !important;
+    min-height: 3rem !important;
+    flex-wrap: wrap !important;
+  }
+
+  .cds--toolbar-content {
+    flex-wrap: wrap !important;
+    width: 100% !important;
+    gap: 0.5rem !important;
+    padding: 0.375rem !important;
+
+    .cds--toolbar-search-container-expandable,
+    .cds--toolbar-search-container-persistent {
+      flex: 1 1 100% !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      height: 2.75rem !important;
+    }
+
+    .cds--btn {
+      width: 100% !important;
+      max-width: 100% !important;
+      min-height: 2.75rem !important;
+      justify-content: center !important;
+    }
+  }
+
+  /* ContentSwitcher on mobile */
+  .environment-switcher-wrapper {
+    width: 100% !important;
+
+    .cds--content-switcher {
+      width: 100% !important;
+    }
+  }
+
+  /* Page Shell and Module Layout Containers */
+  .page-layout,
+  .module-layout,
+  .module-header-container,
+  .module-kpi-wrapper,
+  .module-filter-wrapper,
+  .module-main-content,
+  .module-settings-header,
+  .module-settings-body,
+  .filter-bar-container,
+  .data-grid-container,
+  .data-grid-table-wrapper,
+  .interactive-grid-container,
+  .interactive-reports-container {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-inline: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Reset any utility horizontal margins on mobile viewports */
+  .cds-m-01, .cds-m-02, .cds-m-03, .cds-m-04, .cds-m-05, .cds-m-06, .cds-m-07,
+  .cds-mx-01, .cds-mx-02, .cds-mx-03, .cds-mx-04, .cds-mx-05, .cds-mx-06, .cds-mx-07 {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-inline: 0 !important;
+  }
+}
+
+/* Header & Top Navigation Mobile Handling */
+@media (max-width: 66rem) {
+  /* Hide the top horizontal nav menu on tablet/mobile screens (navigation lives in SideNav) */
+  .cds--header__nav {
+    display: none !important;
+  }
+}
+
+@media (max-width: 42rem) {
+  /* Header brand name on mobile */
+  .cds--header__name {
+    font-size: 0.875rem !important;
+    padding-inline: 0.5rem !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Header Global Actions on mobile: ensure 44px touch targets */
+  .cds--header__action {
+    width: 2.75rem !important;
+    min-width: 2.75rem !important;
+    height: 3rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+}
+
+@media (max-width: 26rem) {
+  /* Ultra-small mobile screens (<= 416px): make actions tight and readable */
+  .cds--header__name .cds--header__name--prefix {
+    display: none !important;
+  }
+}
+
+/* Utility Header Panels on Mobile */
+.cds--header-panel {
+  inline-size: min(22rem, 100vw) !important;
+  max-width: 100vw !important;
+  max-height: calc(100vh - 3rem) !important;
+  max-height: calc(100dvh - 3rem) !important;
+  box-sizing: border-box;
+
+  @media (max-width: 30rem) {
+    inline-size: 100vw !important;
+    width: 100vw !important;
+  }
+}
+
+/* Page Header Typography & Actions on Mobile */
+.page-header-responsive {
+  margin-bottom: 1.5rem;
+
+  @media (min-width: 42rem) {
+    margin-bottom: 2rem;
+  }
+
+  .page-header-title {
+    font-size: clamp(1.5rem, 4vw + 0.5rem, 2.25rem) !important;
+    line-height: 1.25 !important;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    color: var(--cds-text-primary);
+    word-break: break-word;
+  }
+
+  .page-header-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+
+    @media (max-width: 42rem) {
+      width: 100%;
+      margin-top: 0.5rem;
+
+      .cds--btn {
+        flex: 1 1 auto;
+        min-height: 2.75rem;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+/* DataGrid & Tables Mobile Responsiveness & Single-Line No-Wrap Rules */
+.data-grid-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  background-color: var(--cds-layer);
+  border: 1px solid var(--cds-border-subtle);
+
+  .cds--data-table-container {
+    width: 100%;
+    min-width: 100%;
+    overflow: visible;
+  }
+
+  .cds--data-table {
+    min-width: 32rem; /* Ensure columns don't crunch awkwardly on phone screens */
+    width: 100%;
+
+    th,
+    td,
+    .cds--table-header-label,
+    .cds--table-cell {
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      max-width: 25rem;
+    }
+
+    tbody tr {
+      transition: background-color 0.15s ease-in-out;
+
+      &:hover {
+        background-color: var(--cds-layer-hover, #e8e8e8) !important;
+      }
+    }
+  }
+}
+
+.cds--data-table {
+  th,
+  td {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+}
+
+/* App Launcher / LaunchPad Styles */
+.launchpad-app-tile {
+  &:hover {
+    background-color: var(--cds-layer-hover, #e0e0e0) !important;
+    border-color: var(--cds-focus, #0f62fe) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+/* Pagination on Mobile Screens */
+@media (max-width: 42rem) {
+  .cds--pagination {
+    flex-wrap: wrap !important;
+    height: auto !important;
+    min-height: 3rem !important;
+    padding: 0.5rem !important;
+    gap: 0.5rem !important;
+    justify-content: space-between !important;
+
+    .cds--pagination__left,
+    .cds--pagination__right {
+      width: 100% !important;
+      justify-content: space-between !important;
+    }
+
+    .cds--pagination__button {
+      min-width: 2.75rem !important;
+      min-height: 2.75rem !important;
+    }
+  }
+}
+
+/* Mobile Form Touch Target & Layout Controls */
+@media (max-width: 42rem) {
+  /* Prevent iOS Safari 16px auto-zoom */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  input[type="tel"],
+  input[type="url"],
+  input[type="search"],
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+
+  /* Form action buttons full-width touch friendly on mobile */
+  .entity-form-actions-responsive {
+    display: flex !important;
+    flex-direction: column-reverse !important;
+    gap: 0.75rem !important;
+    width: 100% !important;
+    margin-top: 1.5rem !important;
+
+    .cds--btn {
+      width: 100% !important;
+      max-width: 100% !important;
+      min-height: 2.75rem !important;
+      justify-content: center !important;
+    }
+  }
+
+  /* Modal container responsive width on mobile */
+  .cds--modal-container {
+    width: calc(100% - 1rem) !important;
+    max-width: calc(100% - 1rem) !important;
+    margin: 0.5rem !important;
+    max-height: calc(100dvh - 1rem) !important;
+  }
+}
+
+/* Interactive Grid Header on Mobile */
+.interactive-grid-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+
+  @media (max-width: 42rem) {
+    .cds--btn {
+      width: 100%;
+      min-height: 2.75rem;
+      justify-content: center;
+    }
+  }
+}
+
+/* ==========================================================================
+   Carbon Spacing Token Utility Classes
+   ========================================================================== */
+
+/* Spacing Paddings */
+.cds-p-01 { padding: var(--cds-spacing-01, 0.125rem) !important; }
+.cds-p-02 { padding: var(--cds-spacing-02, 0.25rem) !important; }
+.cds-p-03 { padding: var(--cds-spacing-03, 0.5rem) !important; }
+.cds-p-04 { padding: var(--cds-spacing-04, 0.75rem) !important; }
+.cds-p-05 { padding: var(--cds-spacing-05, 1rem) !important; }
+.cds-p-06 { padding: var(--cds-spacing-06, 1.5rem) !important; }
+.cds-p-07 { padding: var(--cds-spacing-07, 2rem) !important; }
+.cds-p-08 { padding: var(--cds-spacing-08, 2.5rem) !important; }
+.cds-p-09 { padding: var(--cds-spacing-09, 3rem) !important; }
+.cds-p-10 { padding: var(--cds-spacing-10, 4rem) !important; }
+
+.cds-px-01 { padding-inline: var(--cds-spacing-01, 0.125rem) !important; }
+.cds-px-02 { padding-inline: var(--cds-spacing-02, 0.25rem) !important; }
+.cds-px-03 { padding-inline: var(--cds-spacing-03, 0.5rem) !important; }
+.cds-px-04 { padding-inline: var(--cds-spacing-04, 0.75rem) !important; }
+.cds-px-05 { padding-inline: var(--cds-spacing-05, 1rem) !important; }
+.cds-px-06 { padding-inline: var(--cds-spacing-06, 1.5rem) !important; }
+.cds-px-07 { padding-inline: var(--cds-spacing-07, 2rem) !important; }
+
+.cds-py-01 { padding-block: var(--cds-spacing-01, 0.125rem) !important; }
+.cds-py-02 { padding-block: var(--cds-spacing-02, 0.25rem) !important; }
+.cds-py-03 { padding-block: var(--cds-spacing-03, 0.5rem) !important; }
+.cds-py-04 { padding-block: var(--cds-spacing-04, 0.75rem) !important; }
+.cds-py-05 { padding-block: var(--cds-spacing-05, 1rem) !important; }
+.cds-py-06 { padding-block: var(--cds-spacing-06, 1.5rem) !important; }
+.cds-py-07 { padding-block: var(--cds-spacing-07, 2rem) !important; }
+
+.cds-pt-03 { padding-top: var(--cds-spacing-03, 0.5rem) !important; }
+.cds-pt-05 { padding-top: var(--cds-spacing-05, 1rem) !important; }
+.cds-pt-07 { padding-top: var(--cds-spacing-07, 2rem) !important; }
+
+.cds-pb-03 { padding-bottom: var(--cds-spacing-03, 0.5rem) !important; }
+.cds-pb-05 { padding-bottom: var(--cds-spacing-05, 1rem) !important; }
+.cds-pb-07 { padding-bottom: var(--cds-spacing-07, 2rem) !important; }
+
+/* Spacing Margins */
+.cds-m-01 { margin: var(--cds-spacing-01, 0.125rem) !important; }
+.cds-m-02 { margin: var(--cds-spacing-02, 0.25rem) !important; }
+.cds-m-03 { margin: var(--cds-spacing-03, 0.5rem) !important; }
+.cds-m-04 { margin: var(--cds-spacing-04, 0.75rem) !important; }
+.cds-m-05 { margin: var(--cds-spacing-05, 1rem) !important; }
+.cds-m-06 { margin: var(--cds-spacing-06, 1.5rem) !important; }
+.cds-m-07 { margin: var(--cds-spacing-07, 2rem) !important; }
+.cds-m-auto { margin: auto !important; }
+.cds-mx-auto { margin-inline: auto !important; }
+
+.cds-mx-01 { margin-inline: var(--cds-spacing-01, 0.125rem) !important; }
+.cds-mx-03 { margin-inline: var(--cds-spacing-03, 0.5rem) !important; }
+.cds-mx-05 { margin-inline: var(--cds-spacing-05, 1rem) !important; }
+
+.cds-my-01 { margin-block: var(--cds-spacing-01, 0.125rem) !important; }
+.cds-my-03 { margin-block: var(--cds-spacing-03, 0.5rem) !important; }
+.cds-my-05 { margin-block: var(--cds-spacing-05, 1rem) !important; }
+.cds-my-06 { margin-block: var(--cds-spacing-06, 1.5rem) !important; }
+.cds-my-07 { margin-block: var(--cds-spacing-07, 2rem) !important; }
+
+.cds-mt-03 { margin-top: var(--cds-spacing-03, 0.5rem) !important; }
+.cds-mt-05 { margin-top: var(--cds-spacing-05, 1rem) !important; }
+.cds-mt-06 { margin-top: var(--cds-spacing-06, 1.5rem) !important; }
+.cds-mt-07 { margin-top: var(--cds-spacing-07, 2rem) !important; }
+
+.cds-mb-03 { margin-bottom: var(--cds-spacing-03, 0.5rem) !important; }
+.cds-mb-05 { margin-bottom: var(--cds-spacing-05, 1rem) !important; }
+.cds-mb-06 { margin-bottom: var(--cds-spacing-06, 1.5rem) !important; }
+.cds-mb-07 { margin-bottom: var(--cds-spacing-07, 2rem) !important; }
+
+/* Spacing Gaps */
+.cds-gap-01 { gap: var(--cds-spacing-01, 0.125rem) !important; }
+.cds-gap-02 { gap: var(--cds-spacing-02, 0.25rem) !important; }
+.cds-gap-03 { gap: var(--cds-spacing-03, 0.5rem) !important; }
+.cds-gap-04 { gap: var(--cds-spacing-04, 0.75rem) !important; }
+.cds-gap-05 { gap: var(--cds-spacing-05, 1rem) !important; }
+.cds-gap-06 { gap: var(--cds-spacing-06, 1.5rem) !important; }
+.cds-gap-07 { gap: var(--cds-spacing-07, 2rem) !important; }
+
+/* ==========================================================================
+   Responsive Grid & Flex Layout Utilities
+   ========================================================================== */
+
+/* Mobile-First Stack: vertical on mobile (sm), horizontal row on tablet/desktop (md+) */
+.cds-stack-responsive {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: var(--cds-spacing-05, 1rem) !important;
+  width: 100%;
+
+  @media (min-width: 42rem) {
+    flex-direction: row !important;
+    align-items: center !important;
+  }
+}
+
+.cds-stack-responsive-reverse {
+  display: flex !important;
+  flex-direction: column-reverse !important;
+  gap: var(--cds-spacing-05, 1rem) !important;
+  width: 100%;
+
+  @media (min-width: 42rem) {
+    flex-direction: row !important;
+    align-items: center !important;
+  }
+}
+
+/* Flex alignments */
+.cds-flex { display: flex !important; }
+.cds-inline-flex { display: inline-flex !important; }
+.cds-flex-col { display: flex !important; flex-direction: column !important; }
+.cds-flex-row { display: flex !important; flex-direction: row !important; }
+.cds-flex-wrap { flex-wrap: wrap !important; }
+.cds-flex-nowrap { flex-wrap: nowrap !important; }
+.cds-flex-1 { flex: 1 1 0% !important; }
+.cds-flex-auto { flex: 1 1 auto !important; }
+.cds-flex-none { flex: none !important; }
+
+.cds-items-center { align-items: center !important; }
+.cds-items-start { align-items: flex-start !important; }
+.cds-items-end { align-items: flex-end !important; }
+.cds-items-stretch { align-items: stretch !important; }
+
+.cds-justify-start { justify-content: flex-start !important; }
+.cds-justify-center { justify-content: center !important; }
+.cds-justify-end { justify-content: flex-end !important; }
+.cds-justify-between { justify-content: space-between !important; }
+
+/* Responsive Grid Cards Layout */
+.cds-grid-responsive {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--cds-spacing-05, 1rem);
+  width: 100%;
+
+  @media (min-width: 42rem) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--cds-spacing-06, 1.5rem);
+  }
+
+  @media (min-width: 66rem) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--cds-spacing-06, 1.5rem);
+  }
+}
+
+.cds-grid-cols-2-responsive {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--cds-spacing-05, 1rem);
+  width: 100%;
+
+  @media (min-width: 42rem) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--cds-spacing-06, 1.5rem);
+  }
+}
+
+.cds-grid-cols-4-responsive {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--cds-spacing-05, 1rem);
+  width: 100%;
+
+  @media (min-width: 32rem) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (min-width: 66rem) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--cds-spacing-06, 1.5rem);
+  }
+}
+
+/* Responsive Tile / Card Padding */
+.cds-tile-responsive {
+  padding: var(--cds-spacing-05, 1rem) !important;
+  box-sizing: border-box;
+
+  @media (min-width: 42rem) {
+    padding: var(--cds-spacing-06, 1.5rem) !important;
+  }
+
+  @media (min-width: 66rem) {
+    padding: var(--cds-spacing-07, 2rem) !important;
+  }
+}
+
+/* Touch & Interaction Helpers */
+.cds-touch-target {
+  min-height: 2.75rem !important;
+  min-width: 2.75rem !important;
+}
+
+.cds-btn-mobile-full {
+  @media (max-width: 41.999rem) {
+    width: 100% !important;
+    min-height: 2.75rem !important;
+    justify-content: center !important;
+  }
+}
+
+/* Responsive Breakpoint Visibility Classes */
+@media (max-width: 41.999rem) {
+  .cds-hide-sm { display: none !important; }
+}
+
+@media (min-width: 42rem) and (max-width: 65.999rem) {
+  .cds-hide-md { display: none !important; }
+}
+
+@media (min-width: 66rem) {
+  .cds-hide-lg { display: none !important; }
+}
+
+@media (min-width: 42rem) {
+  .cds-show-sm-only { display: none !important; }
+}
+
+@media (max-width: 41.999rem) or (min-width: 66rem) {
+  .cds-show-md-only { display: none !important; }
+}
+
+@media (max-width: 65.999rem) {
+  .cds-show-lg-up { display: none !important; }
+}
+
+/* Typography Helpers */
+.cds-text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cds-word-break {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* ==========================================================================
+   Responsive Grid & Stack Container Rules
+   ========================================================================== */
+
+.cds-responsive-grid-container {
+  &.cols-sm-1 { grid-template-columns: repeat(1, minmax(0, 1fr)) !important; }
+  &.cols-sm-2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  &.cols-sm-3 { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+  &.cols-sm-4 { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+
+  @media (min-width: 42rem) {
+    &.cols-md-1 { grid-template-columns: repeat(1, minmax(0, 1fr)) !important; }
+    &.cols-md-2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+    &.cols-md-3 { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+    &.cols-md-4 { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+    &.cols-md-6 { grid-template-columns: repeat(6, minmax(0, 1fr)) !important; }
+  }
+
+  @media (min-width: 66rem) {
+    &.cols-lg-1 { grid-template-columns: repeat(1, minmax(0, 1fr)) !important; }
+    &.cols-lg-2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+    &.cols-lg-3 { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+    &.cols-lg-4 { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+    &.cols-lg-6 { grid-template-columns: repeat(6, minmax(0, 1fr)) !important; }
+  }
+
+  @media (min-width: 82rem) {
+    &.cols-xlg-1 { grid-template-columns: repeat(1, minmax(0, 1fr)) !important; }
+    &.cols-xlg-2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+    &.cols-xlg-3 { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+    &.cols-xlg-4 { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+    &.cols-xlg-6 { grid-template-columns: repeat(6, minmax(0, 1fr)) !important; }
+  }
+}
+
+.cds-responsive-stack-container {
+  flex-direction: column;
+
+  &.reverse-mobile {
+    flex-direction: column-reverse;
+  }
+
+  &.switch-sm {
+    flex-direction: row;
+  }
+
+  &.switch-md {
+    @media (min-width: 42rem) {
+      flex-direction: row;
+    }
+  }
+
+  &.switch-lg {
+    @media (min-width: 66rem) {
+      flex-direction: row;
+    }
+  }
+
+  &.switch-xlg {
+    @media (min-width: 82rem) {
+      flex-direction: row;
+    }
+  }
+}
+
+/* ==========================================================================
+   EntityForm Component Styles & Action Bar Enhancements
+   ========================================================================== */
+
+@keyframes cds-pulse {
+  0% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.entity-form-toolbar,
+.entity-toolbar {
+  scrollbar-width: thin;
+  
+  &::-webkit-scrollbar {
+    height: 4px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--cds-border-subtle);
+    border-radius: 2px;
+  }
+
+  .entity-form-action-btn,
+  .entity-toolbar-btn {
+    transition: background-color 0.15s ease-in-out;
+
+    &:hover:not(:disabled) {
+      background-color: var(--cds-layer-hover-01);
+    }
+
+    &.cds--btn--danger--ghost,
+    &.entity-toolbar-action-delete {
+      &:hover:not(:disabled) {
+        background-color: var(--cds-button-danger-secondary, #da1e28);
+        color: var(--cds-text-on-color, #ffffff) !important;
+        svg {
+          fill: var(--cds-icon-on-color, #ffffff) !important;
+        }
+      }
+    }
+
+    &:focus {
+      outline: 2px solid var(--cds-focus);
+      outline-offset: -2px;
+    }
+  }
+}
+
+.entity-form-status-bar,
+.entity-status-bar {
+  font-family: inherit;
+  letter-spacing: 0.16px;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.entity-layout-wrapper {
+  width: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box;
+
+  .entity-content-viewport {
+    padding: 0.75rem 0.5rem;
+
+    @media (min-width: 42rem) {
+      padding: 1.5rem;
+    }
+  }
+}
+
+.entity-form-root {
+  width: 100%;
+  margin: 0 !important;
+  box-sizing: border-box;
+
+  .entity-form-content {
+    padding: 0.75rem 0.5rem !important;
+
+    @media (min-width: 42rem) {
+      padding: 1.5rem !important;
+    }
+  }
+
+  &.entity-form-variant-fluid {
+    .cds--form-item {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.entity-toolbar {
+  padding: 0.25rem 0.5rem;
+  margin: 0 !important;
+
+  @media (max-width: 42rem) {
+    padding: 0.25rem 0.25rem;
+  }
+}
+
+.entity-status-bar {
+  padding: 0.375rem 0.5rem;
+  margin: 0 !important;
+
+  @media (min-width: 42rem) {
+    padding: 0.375rem 0.75rem;
+  }
+}
+
+/* Ensure modal presentation has clean container bounds */
+.entity-form-modal {
+  .cds--modal-content {
+    padding: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .entity-form-root {
+    border: none !important;
+  }
+}
+
+/* Entity Cards & Data View styles */
+.entity-card-tile {
+  &:hover {
+    border-color: var(--cds-border-interactive) !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  }
+}
+
+.entity-list-row {
+  &:hover {
+    background-color: var(--cds-layer-hover-01) !important;
+  }
+}
+
+.module-header-container {
+  padding: 1rem 0.75rem 0 !important;
+
+  @media (min-width: 42rem) {
+    padding: 1.25rem 1.5rem 0 !important;
+  }
+
+  .cds--tabs {
+    .cds--tab--list {
+      border-bottom: none;
+    }
+  }
+}
+
+.module-kpi-wrapper,
+.module-filter-wrapper,
+.module-main-content {
+  padding-left: 0.25rem !important;
+  padding-right: 0.25rem !important;
+
+  @media (min-width: 42rem) {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+}
+
+.module-settings-header {
+  padding: 1rem 0.75rem !important;
+
+  @media (min-width: 42rem) {
+    padding: 1.25rem 1.5rem !important;
+  }
+}
+
+.module-settings-body {
+  padding: 0.75rem 0.75rem 1.5rem !important;
+
+  @media (min-width: 42rem) {
+    padding: 1rem 1.5rem 2rem !important;
+  }
+}
+
+/* UserProfile Dropdown Responsive & Motion Styling */
+.user-profile-display-name {
+  @media (max-width: 32rem) {
+    display: none !important;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.6;
+    box-shadow: 0 0 0 0 rgba(25, 128, 56, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 0 0 4px rgba(25, 128, 56, 0);
+  }
+  100% {
+    transform: scale(0.9);
+    opacity: 0.6;
+    box-shadow: 0 0 0 0 rgba(25, 128, 56, 0);
+  }
+}
+
+.pulsing-dot-indicator {
+  animation: pulse 2s infinite ease-in-out;
+}
+
+/* Premium ERP Layout & Visual Polish */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.02);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--cds-border-strong, #8d8d8d);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cds-interactive-01, #0f62fe);
+}
+
+.cds--tile, .cds--clickable-tile {
+  transition: transform 0.15s cubic-bezier(0.2, 0, 0.38, 0.9), box-shadow 0.15s cubic-bezier(0.2, 0, 0.38, 0.9), border-color 0.15s cubic-bezier(0.2, 0, 0.38, 0.9) !important;
+  border-radius: 4px !important;
+}
+
+.cds--clickable-tile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+  border-color: var(--cds-interactive-01, #0f62fe) !important;
+}
+
+.cds--data-table {
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  border-radius: 4px !important;
+  overflow: hidden !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+}
+
+/* Subtle transitions for background and color variables to smooth out theme switching */
+html, body, #root, .cds--header, .cds--side-nav, .app-main-content, .cds--tile, .cds--clickable-tile, .cds--data-table, .cds--btn, .cds--modal-container {
+  transition: background-color 0.3s cubic-bezier(0.2, 0, 0.38, 1), color 0.3s cubic-bezier(0.2, 0, 0.38, 1), border-color 0.3s cubic-bezier(0.2, 0, 0.38, 1), box-shadow 0.3s cubic-bezier(0.2, 0, 0.38, 1) !important;
+}
+
+/* Dynamic Fade transition when language or theme updates */
+@keyframes themeTransitionFade {
+  from {
+    opacity: 0.2;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.theme-transition-active {
+  animation: themeTransitionFade 0.4s cubic-bezier(0.2, 0, 0.38, 1) forwards;
+}
+
+
+
+
+
+
+

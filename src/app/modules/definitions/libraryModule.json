@@ -1,0 +1,147 @@
+{
+  "id": "library",
+  "code": "MOD-LIB-01",
+  "name": "Library & Resource Management",
+  "label": "Library & Resource Management",
+  "shortName": "Library",
+  "category": "Institutional Operations",
+  "version": "1.4.0",
+  "status": "active",
+  "description": "Authoritative institutional catalog for physical book collections, circulating loans, media reservations, and digital electronic database subscriptions.",
+  "icon": "Book",
+  "authoritativeEntities": ["books", "loans", "digitalResources"],
+  "primaryEntity": "books",
+  "entities": [
+    {
+      "name": "books",
+      "label": "Library Catalog Item",
+      "labelPlural": "Book Collection",
+      "isPrimary": true,
+      "icon": "Catalog",
+      "description": "Authoritative catalog of hardcover, paperback, and reference volumes indexed by ISBN and Dewey decimal.",
+      "schema": {
+        "resource": "books",
+        "label": "Book",
+        "labelPlural": "Books",
+        "fields": [
+          { "name": "isbn", "type": "text", "label": "ISBN-13", "required": true, "colSpan": 6 },
+          { "name": "title", "type": "text", "label": "Book Title", "required": true, "colSpan": 6 },
+          { "name": "author", "type": "text", "label": "Author(s)", "required": true, "colSpan": 6 },
+          { "name": "category", "type": "select", "label": "Subject Category", "required": true, "colSpan": 6, "options": [
+            { "label": "Computer Science & AI", "value": "Computer Science" },
+            { "label": "Pure Mathematics", "value": "Mathematics" },
+            { "label": "Physics & Engineering", "value": "Physics" },
+            { "label": "World Literature & Fiction", "value": "Literature" },
+            { "label": "Historical Archives", "value": "History" }
+          ]},
+          { "name": "totalCopies", "type": "number", "label": "Total Physical Copies", "required": true, "colSpan": 6 },
+          { "name": "availableCopies", "type": "number", "label": "Available for Checkout", "required": true, "colSpan": 6 },
+          { "name": "shelfLocation", "type": "text", "label": "Stack / Shelf Call Number", "colSpan": 6 },
+          { "name": "status", "type": "select", "label": "Circulation Status", "required": true, "colSpan": 6, "options": [
+            { "label": "In Circulation", "value": "available" },
+            { "label": "All Copies Loaned", "value": "loaned" },
+            { "label": "Reference Only", "value": "reference" },
+            { "label": "Under Repair", "value": "repair" }
+          ]}
+        ]
+      },
+      "columns": [
+        { "key": "isbn", "header": "ISBN", "sortable": true, "width": "140px" },
+        { "key": "title", "header": "Book Title", "sortable": true },
+        { "key": "author", "header": "Author", "sortable": true, "width": "160px" },
+        { "key": "category", "header": "Category", "sortable": true, "width": "140px" },
+        { "key": "availableCopies", "header": "Available", "sortable": true, "width": "110px" },
+        { "key": "shelfLocation", "header": "Shelf Location", "sortable": true, "width": "130px" },
+        { "key": "status", "header": "Status", "sortable": true, "width": "120px" }
+      ],
+      "defaultData": [
+        { "id": "1", "isbn": "978-0131103627", "title": "The C Programming Language (2nd Ed)", "author": "Brian W. Kernighan, Dennis Ritchie", "category": "Computer Science", "totalCopies": 8, "availableCopies": 5, "shelfLocation": "QA76.73 .C15 K47", "status": "available" },
+        { "id": "2", "isbn": "978-0262033848", "title": "Introduction to Algorithms (CLRS 3rd Ed)", "author": "Thomas H. Cormen, Charles Leiserson", "category": "Computer Science", "totalCopies": 12, "availableCopies": 3, "shelfLocation": "QA76.6 .I585 2009", "status": "available" },
+        { "id": "3", "isbn": "978-0134685991", "title": "Effective Java (3rd Ed)", "author": "Joshua Bloch", "category": "Computer Science", "totalCopies": 6, "availableCopies": 0, "shelfLocation": "QA76.73 .J38 B57", "status": "loaned" },
+        { "id": "4", "isbn": "978-0321751041", "title": "The Art of Computer Programming, Vol 1", "author": "Donald E. Knuth", "category": "Mathematics", "totalCopies": 4, "availableCopies": 4, "shelfLocation": "QA76.6 .K64 1997", "status": "reference" },
+        { "id": "5", "isbn": "978-0691140551", "title": "The Princeton Companion to Mathematics", "author": "Timothy Gowers (Ed.)", "category": "Mathematics", "totalCopies": 5, "availableCopies": 2, "shelfLocation": "QA5 .P745 2008", "status": "available" }
+      ]
+    },
+    {
+      "name": "loans",
+      "label": "Circulation Loan",
+      "labelPlural": "Circulation Loans",
+      "isPrimary": false,
+      "icon": "Delivery",
+      "description": "Active student and faculty book checkouts, renewals, return verification, and overdue notices.",
+      "schema": {
+        "resource": "loans",
+        "label": "Circulation Loan",
+        "labelPlural": "Loans",
+        "fields": [
+          { "name": "loanId", "type": "text", "label": "Loan Receipt #", "required": true, "colSpan": 6 },
+          { "name": "borrowerName", "type": "text", "label": "Borrower Name", "required": true, "colSpan": 6 },
+          { "name": "bookTitle", "type": "text", "label": "Book Title", "required": true, "colSpan": 6 },
+          { "name": "checkoutDate", "type": "date", "label": "Checkout Date", "required": true, "colSpan": 6 },
+          { "name": "dueDate", "type": "date", "label": "Due Date", "required": true, "colSpan": 6 },
+          { "name": "status", "type": "select", "label": "Loan Status", "required": true, "colSpan": 6, "options": [
+            { "label": "Active (On Loan)", "value": "active" },
+            { "label": "Returned On-Time", "value": "returned" },
+            { "label": "Overdue Notice Sent", "value": "overdue" },
+            { "label": "Reported Lost", "value": "lost" }
+          ]}
+        ]
+      },
+      "columns": [
+        { "key": "loanId", "header": "Loan #", "sortable": true, "width": "120px" },
+        { "key": "borrowerName", "header": "Borrower", "sortable": true },
+        { "key": "bookTitle", "header": "Book Title", "sortable": true },
+        { "key": "checkoutDate", "header": "Checked Out", "sortable": true, "width": "120px" },
+        { "key": "dueDate", "header": "Due Date", "sortable": true, "width": "120px" },
+        { "key": "status", "header": "Status", "sortable": true, "width": "120px" }
+      ],
+      "defaultData": [
+        { "id": "1", "loanId": "LN-2026-901", "borrowerName": "Alexander Hayes (Student)", "bookTitle": "Introduction to Algorithms (CLRS 3rd Ed)", "checkoutDate": "2026-09-01", "dueDate": "2026-09-21", "status": "active" },
+        { "id": "2", "loanId": "LN-2026-902", "borrowerName": "Sophia Bennett (Student)", "bookTitle": "Effective Java (3rd Ed)", "checkoutDate": "2026-08-25", "dueDate": "2026-09-15", "status": "active" },
+        { "id": "3", "loanId": "LN-2026-903", "borrowerName": "Lucas Vance (Student)", "bookTitle": "The C Programming Language", "checkoutDate": "2026-08-10", "dueDate": "2026-08-31", "status": "overdue" }
+      ]
+    },
+    {
+      "name": "digitalResources",
+      "label": "Digital Database & E-Journal",
+      "labelPlural": "Digital Resources",
+      "isPrimary": false,
+      "icon": "CloudApp",
+      "description": "Institutional online research subscriptions, IEEE Xplore, JSTOR access, and e-book repositories.",
+      "schema": {
+        "resource": "digitalResources",
+        "label": "Digital Resource",
+        "labelPlural": "Digital Resources",
+        "fields": [
+          { "name": "resourceCode", "type": "text", "label": "Resource Code", "required": true, "colSpan": 6 },
+          { "name": "title", "type": "text", "label": "Resource Title / Database", "required": true, "colSpan": 6 },
+          { "name": "provider", "type": "text", "label": "Content Provider", "required": true, "colSpan": 6 },
+          { "name": "accessType", "type": "select", "label": "Access Model", "required": true, "colSpan": 6, "options": [
+            { "label": "Campus IP & Single Sign-On", "value": "Campus SSO" },
+            { "label": "Unlimited Institutional License", "value": "Unlimited" },
+            { "label": "Concurrent User Cap (25 seats)", "value": "Concurrent" }
+          ]},
+          { "name": "subscriptionRenewal", "type": "date", "label": "Subscription Renewal Date", "colSpan": 6 },
+          { "name": "status", "type": "select", "label": "Subscription Status", "required": true, "colSpan": 6, "options": [
+            { "label": "Active Subscription", "value": "active" },
+            { "label": "Pending Renewal", "value": "pending" },
+            { "label": "Trial License", "value": "trial" }
+          ]}
+        ]
+      },
+      "columns": [
+        { "key": "resourceCode", "header": "Code", "sortable": true, "width": "120px" },
+        { "key": "title", "header": "Database Title", "sortable": true },
+        { "key": "provider", "header": "Provider", "sortable": true, "width": "160px" },
+        { "key": "accessType", "header": "Access Mode", "sortable": true, "width": "140px" },
+        { "key": "subscriptionRenewal", "header": "Renewal", "sortable": true, "width": "120px" },
+        { "key": "status", "header": "Status", "sortable": true, "width": "120px" }
+      ],
+      "defaultData": [
+        { "id": "1", "resourceCode": "DIG-IEEE-01", "title": "IEEE Electronic Library (IEL)", "provider": "IEEE / Wiley", "accessType": "Campus SSO", "subscriptionRenewal": "2027-01-01", "status": "active" },
+        { "id": "2", "resourceCode": "DIG-JSTOR-02", "title": "JSTOR Arts & Sciences Collections", "provider": "ITHAKA", "accessType": "Campus SSO", "subscriptionRenewal": "2026-12-31", "status": "active" },
+        { "id": "3", "resourceCode": "DIG-ACM-03", "title": "ACM Digital Library Full-Text", "provider": "Association for Computing Machinery", "accessType": "Unlimited", "subscriptionRenewal": "2027-06-30", "status": "active" }
+      ]
+    }
+  ]
+}

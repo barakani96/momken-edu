@@ -1,0 +1,234 @@
+{
+  "id": "sis",
+  "code": "MOD-SIS-01",
+  "name": "Student Information System",
+  "label": "Student Information System",
+  "shortName": "SIS",
+  "category": "Academic & Student Life",
+  "version": "2.4.0",
+  "status": "active",
+  "description": "Authoritative institutional system of record for managing student biographical profiles, admissions, term enrollments, and family guardian linkages.",
+  "icon": "Education",
+  "authoritativeEntities": ["students", "admissions", "enrollments", "guardians"],
+  "primaryEntity": "students",
+  "entities": [
+    {
+      "name": "students",
+      "label": "Student",
+      "labelPlural": "Students",
+      "isPrimary": true,
+      "icon": "UserMultiple",
+      "description": "Authoritative demographic, contact, and enrollment status records for registered students.",
+      "schema": {
+        "resource": "students",
+        "label": "Student",
+        "labelPlural": "Students",
+        "fields": [
+          { "name": "studentId", "type": "text", "label": "Student ID", "required": true, "colSpan": 6 },
+          { "name": "status", "type": "select", "label": "Status", "required": true, "colSpan": 6, "options": [
+            { "label": "Active", "value": "active" },
+            { "label": "Pending", "value": "pending" },
+            { "label": "Inactive", "value": "inactive" },
+            { "label": "Graduated", "value": "graduated" }
+          ]},
+          { "name": "firstName", "type": "text", "label": "First Name", "required": true, "colSpan": 6 },
+          { "name": "lastName", "type": "text", "label": "Last Name", "required": true, "colSpan": 6 },
+          { "name": "email", "type": "email", "label": "Email Address", "required": true, "colSpan": 6 },
+          { "name": "phone", "type": "phone", "label": "Contact Phone", "colSpan": 6 },
+          { "name": "gradeLevel", "type": "select", "label": "Grade Level", "required": true, "colSpan": 6, "options": [
+            { "label": "Grade 9 (Freshman)", "value": "Grade 9" },
+            { "label": "Grade 10 (Sophomore)", "value": "Grade 10" },
+            { "label": "Grade 11 (Junior)", "value": "Grade 11" },
+            { "label": "Grade 12 (Senior)", "value": "Grade 12" }
+          ]},
+          { "name": "enrollmentDate", "type": "date", "label": "Enrollment Date", "colSpan": 6 },
+          { "name": "gender", "type": "select", "label": "Gender", "colSpan": 6, "options": [
+            { "label": "Male", "value": "Male" },
+            { "label": "Female", "value": "Female" },
+            { "label": "Other / Prefer not to say", "value": "Other" }
+          ]},
+          { "name": "gpa", "type": "number", "label": "Cumulative GPA", "colSpan": 6 },
+          { "name": "address", "type": "textarea", "label": "Residential Address", "colSpan": 12 }
+        ]
+      },
+      "columns": [
+        { "key": "studentId", "header": "Student ID", "sortable": true, "width": "120px" },
+        { "key": "name", "header": "Full Name", "sortable": true },
+        { "key": "gradeLevel", "header": "Grade", "sortable": true, "width": "130px" },
+        { "key": "email", "header": "Email", "sortable": true },
+        { "key": "status", "header": "Status", "sortable": true, "width": "110px" },
+        { "key": "enrollmentDate", "header": "Enrolled", "sortable": true, "width": "130px" }
+      ],
+      "defaultData": [
+        { "id": "1", "studentId": "STU-1001", "name": "Alexander Hayes", "firstName": "Alexander", "lastName": "Hayes", "email": "a.hayes@school.edu", "phone": "+1 (555) 234-5678", "gradeLevel": "Grade 11", "status": "active", "enrollmentDate": "2024-08-15", "gender": "Male", "gpa": 3.85, "address": "742 Evergreen Terrace, Springfield" },
+        { "id": "2", "studentId": "STU-1002", "name": "Sophia Bennett", "firstName": "Sophia", "lastName": "Bennett", "email": "s.bennett@school.edu", "phone": "+1 (555) 345-6789", "gradeLevel": "Grade 12", "status": "active", "enrollmentDate": "2023-08-20", "gender": "Female", "gpa": 3.92, "address": "124 Conch Street, Riverdale" },
+        { "id": "3", "studentId": "STU-1003", "name": "Ethan Caldwell", "firstName": "Ethan", "lastName": "Caldwell", "email": "e.caldwell@school.edu", "phone": "+1 (555) 456-7890", "gradeLevel": "Grade 10", "status": "pending", "enrollmentDate": "2025-01-10", "gender": "Male", "gpa": 3.40, "address": "55 West End Ave, Metropolis" },
+        { "id": "4", "studentId": "STU-1004", "name": "Olivia Martinez", "firstName": "Olivia", "lastName": "Martinez", "email": "o.martinez@school.edu", "phone": "+1 (555) 567-8901", "gradeLevel": "Grade 9", "status": "active", "enrollmentDate": "2025-08-18", "gender": "Female", "gpa": 3.78, "address": "89 Elm Road, Gotham" },
+        { "id": "5", "studentId": "STU-1005", "name": "Lucas Vance", "firstName": "Lucas", "lastName": "Vance", "email": "l.vance@school.edu", "phone": "+1 (555) 678-9012", "gradeLevel": "Grade 11", "status": "inactive", "enrollmentDate": "2024-08-15", "gender": "Male", "gpa": 2.95, "address": "304 Pine Lane, Star City" },
+        { "id": "6", "studentId": "STU-1006", "name": "Maya Patel", "firstName": "Maya", "lastName": "Patel", "email": "m.patel@school.edu", "phone": "+1 (555) 789-0123", "gradeLevel": "Grade 12", "status": "active", "enrollmentDate": "2023-08-20", "gender": "Female", "gpa": 4.00, "address": "12 Oak Boulevard, Central City" }
+      ]
+    },
+    {
+      "name": "admissions",
+      "label": "Admission Application",
+      "labelPlural": "Admissions",
+      "isPrimary": false,
+      "icon": "DocumentAdd",
+      "description": "Prospective applicant records, interview evaluations, testing scores, and decision workflows.",
+      "schema": {
+        "resource": "admissions",
+        "label": "Admission Application",
+        "labelPlural": "Admissions",
+        "fields": [
+          { "name": "appNumber", "type": "text", "label": "Application #", "required": true, "colSpan": 6 },
+          { "name": "applicantName", "type": "text", "label": "Applicant Name", "required": true, "colSpan": 6 },
+          { "name": "targetGrade", "type": "select", "label": "Target Grade", "required": true, "colSpan": 6, "options": [
+            { "label": "Grade 9", "value": "Grade 9" },
+            { "label": "Grade 10", "value": "Grade 10" },
+            { "label": "Grade 11", "value": "Grade 11" },
+            { "label": "Grade 12", "value": "Grade 12" }
+          ]},
+          { "name": "stage", "type": "select", "label": "Application Stage", "required": true, "colSpan": 6, "options": [
+            { "label": "Draft Submitted", "value": "Draft" },
+            { "label": "Under Review", "value": "Under Review" },
+            { "label": "Interview Scheduled", "value": "Interview" },
+            { "label": "Accepted", "value": "Accepted" },
+            { "label": "Waitlisted", "value": "Waitlisted" },
+            { "label": "Rejected", "value": "Rejected" }
+          ]},
+          { "name": "submissionDate", "type": "date", "label": "Submission Date", "colSpan": 6 },
+          { "name": "entranceScore", "type": "number", "label": "Entrance Exam Score (%)", "colSpan": 6 },
+          { "name": "parentEmail", "type": "email", "label": "Parent/Guardian Email", "colSpan": 6 },
+          { "name": "evaluatorNotes", "type": "textarea", "label": "Evaluator Notes", "colSpan": 12 }
+        ]
+      },
+      "columns": [
+        { "key": "appNumber", "header": "App #", "sortable": true, "width": "130px" },
+        { "key": "applicantName", "header": "Applicant", "sortable": true },
+        { "key": "targetGrade", "header": "Target Grade", "sortable": true, "width": "130px" },
+        { "key": "stage", "header": "Stage", "sortable": true, "width": "140px" },
+        { "key": "entranceScore", "header": "Exam Score", "sortable": true, "width": "120px" },
+        { "key": "submissionDate", "header": "Submitted", "sortable": true, "width": "130px" }
+      ],
+      "defaultData": [
+        { "id": "1", "appNumber": "ADM-2026-001", "name": "Liam Henderson", "applicantName": "Liam Henderson", "targetGrade": "Grade 9", "stage": "Under Review", "entranceScore": 88, "submissionDate": "2026-02-14", "parentEmail": "henderson.fam@mail.com", "evaluatorNotes": "Strong STEM portfolio. Excellent recommendations." },
+        { "id": "2", "appNumber": "ADM-2026-002", "name": "Chloe Richardson", "applicantName": "Chloe Richardson", "targetGrade": "Grade 10", "stage": "Interview", "entranceScore": 94, "submissionDate": "2026-02-18", "parentEmail": "m.richardson@domain.org", "evaluatorNotes": "Transfer applicant from Lincoln Academy. Interview set for Friday." },
+        { "id": "3", "appNumber": "ADM-2026-003", "name": "Noah Takahashi", "applicantName": "Noah Takahashi", "targetGrade": "Grade 9", "stage": "Accepted", "entranceScore": 97, "submissionDate": "2026-01-28", "parentEmail": "takahashi@acme.jp", "evaluatorNotes": "Top percentile math score. Merit scholarship candidate." },
+        { "id": "4", "appNumber": "ADM-2026-004", "name": "Zoe Kravitz-Miller", "applicantName": "Zoe Kravitz-Miller", "targetGrade": "Grade 11", "stage": "Waitlisted", "entranceScore": 79, "submissionDate": "2026-02-22", "parentEmail": "kravitz.z@inbox.net", "evaluatorNotes": "Solid essay, grade capacity currently reached for Grade 11." }
+      ]
+    },
+    {
+      "name": "enrollments",
+      "label": "Enrollment Record",
+      "labelPlural": "Enrollments",
+      "isPrimary": false,
+      "icon": "CheckmarkOutline",
+      "description": "Active student course schedules, term credits, and program registration records.",
+      "schema": {
+        "resource": "enrollments",
+        "label": "Enrollment Record",
+        "labelPlural": "Enrollments",
+        "fields": [
+          { "name": "enrollmentCode", "type": "text", "label": "Enrollment Code", "required": true, "colSpan": 6 },
+          { "name": "studentName", "type": "text", "label": "Student Name", "required": true, "colSpan": 6 },
+          { "name": "academicYear", "type": "text", "label": "Academic Year", "required": true, "colSpan": 6 },
+          { "name": "term", "type": "select", "label": "Academic Term", "required": true, "colSpan": 6, "options": [
+            { "label": "Fall Semester", "value": "Fall Semester" },
+            { "label": "Spring Semester", "value": "Spring Semester" },
+            { "label": "Summer Session", "value": "Summer Session" }
+          ]},
+          { "name": "program", "type": "text", "label": "Academic Program", "required": true, "colSpan": 6 },
+          { "name": "status", "type": "select", "label": "Enrollment Status", "required": true, "colSpan": 6, "options": [
+            { "label": "Enrolled", "value": "Enrolled" },
+            { "label": "On Leave", "value": "On Leave" },
+            { "label": "Withdrawn", "value": "Withdrawn" },
+            { "label": "Completed", "value": "Completed" }
+          ]},
+          { "name": "creditHours", "type": "number", "label": "Credit Hours", "colSpan": 6 }
+        ]
+      },
+      "columns": [
+        { "key": "enrollmentCode", "header": "Code", "sortable": true, "width": "130px" },
+        { "key": "studentName", "header": "Student", "sortable": true },
+        { "key": "academicYear", "header": "Academic Year", "sortable": true, "width": "140px" },
+        { "key": "term", "header": "Term", "sortable": true, "width": "140px" },
+        { "key": "program", "header": "Program", "sortable": true },
+        { "key": "status", "header": "Status", "sortable": true, "width": "120px" }
+      ],
+      "defaultData": [
+        { "id": "1", "enrollmentCode": "ENR-2026-F1", "name": "Alexander Hayes (Fall 2026)", "studentName": "Alexander Hayes", "academicYear": "2026-2027", "term": "Fall Semester", "program": "High School Diploma - Honors", "status": "Enrolled", "creditHours": 18 },
+        { "id": "2", "enrollmentCode": "ENR-2026-F2", "name": "Sophia Bennett (Fall 2026)", "studentName": "Sophia Bennett", "academicYear": "2026-2027", "term": "Fall Semester", "program": "Advanced Placement STEM", "status": "Enrolled", "creditHours": 20 },
+        { "id": "3", "enrollmentCode": "ENR-2026-F3", "name": "Ethan Caldwell (Fall 2026)", "studentName": "Ethan Caldwell", "academicYear": "2026-2027", "term": "Fall Semester", "program": "General Academic Track", "status": "Enrolled", "creditHours": 16 },
+        { "id": "4", "enrollmentCode": "ENR-2026-F4", "name": "Olivia Martinez (Fall 2026)", "studentName": "Olivia Martinez", "academicYear": "2026-2027", "term": "Fall Semester", "program": "International Baccalaureate", "status": "Enrolled", "creditHours": 19 },
+        { "id": "5", "enrollmentCode": "ENR-2026-F5", "name": "Lucas Vance (Fall 2026)", "studentName": "Lucas Vance", "academicYear": "2026-2027", "term": "Fall Semester", "program": "General Academic Track", "status": "On Leave", "creditHours": 0 }
+      ]
+    },
+    {
+      "name": "guardians",
+      "label": "Guardian & Family Contact",
+      "labelPlural": "Guardians",
+      "isPrimary": false,
+      "icon": "Collaborate",
+      "description": "Primary emergency contacts, authorized pickups, and family relationships linked to students.",
+      "schema": {
+        "resource": "guardians",
+        "label": "Guardian & Family Contact",
+        "labelPlural": "Guardians",
+        "fields": [
+          { "name": "guardianName", "type": "text", "label": "Guardian Name", "required": true, "colSpan": 6 },
+          { "name": "relationship", "type": "select", "label": "Relationship", "required": true, "colSpan": 6, "options": [
+            { "label": "Mother", "value": "Mother" },
+            { "label": "Father", "value": "Father" },
+            { "label": "Legal Guardian", "value": "Legal Guardian" },
+            { "label": "Grandparent", "value": "Grandparent" }
+          ]},
+          { "name": "studentLinked", "type": "text", "label": "Linked Student", "required": true, "colSpan": 6 },
+          { "name": "phone", "type": "phone", "label": "Mobile Phone", "required": true, "colSpan": 6 },
+          { "name": "email", "type": "email", "label": "Email Address", "required": true, "colSpan": 6 },
+          { "name": "isEmergencyContact", "type": "checkbox", "label": "Primary Emergency Contact", "colSpan": 6 },
+          { "name": "canPickup", "type": "checkbox", "label": "Authorized Campus Pickup", "colSpan": 6 }
+        ]
+      },
+      "columns": [
+        { "key": "guardianName", "header": "Guardian Name", "sortable": true },
+        { "key": "relationship", "header": "Relationship", "sortable": true, "width": "140px" },
+        { "key": "studentLinked", "header": "Linked Student", "sortable": true },
+        { "key": "phone", "header": "Phone", "sortable": true, "width": "160px" },
+        { "key": "email", "header": "Email", "sortable": true }
+      ],
+      "defaultData": [
+        { "id": "1", "name": "Eleanor Hayes", "guardianName": "Eleanor Hayes", "relationship": "Mother", "studentLinked": "Alexander Hayes (STU-1001)", "phone": "+1 (555) 901-2345", "email": "e.hayes@family.org", "isEmergencyContact": true, "canPickup": true },
+        { "id": "2", "name": "Marcus Bennett", "guardianName": "Marcus Bennett", "relationship": "Father", "studentLinked": "Sophia Bennett (STU-1002)", "phone": "+1 (555) 912-3456", "email": "m.bennett@enterprise.com", "isEmergencyContact": true, "canPickup": true },
+        { "id": "3", "name": "Sarah Caldwell", "guardianName": "Sarah Caldwell", "relationship": "Mother", "studentLinked": "Ethan Caldwell (STU-1003)", "phone": "+1 (555) 923-4567", "email": "s.caldwell@domain.net", "isEmergencyContact": true, "canPickup": false },
+        { "id": "4", "name": "David Martinez", "guardianName": "David Martinez", "relationship": "Father", "studentLinked": "Olivia Martinez (STU-1004)", "phone": "+1 (555) 934-5678", "email": "d.martinez@corp.org", "isEmergencyContact": true, "canPickup": true }
+      ]
+    }
+  ],
+  "settings": {
+    "general": {
+      "academicYear": "2026-2027",
+      "defaultTerm": "Fall Semester",
+      "defaultViewMode": "table",
+      "allowQuickInlineEdit": true,
+      "autoRefreshInterval": 0
+    },
+    "numbering": {
+      "idPrefix": "STU-",
+      "idSequenceStart": 1000,
+      "autoGenerateStudentId": true,
+      "requireNationalIdentifier": true
+    },
+    "admissions": {
+      "maxGradeCapacity": 30,
+      "enableWaitlist": true,
+      "autoEnrollAcceptedAdmissions": false,
+      "requireGuardianConsent": true
+    },
+    "governance": {
+      "enableAuditLogging": true,
+      "archiveRetentionYears": 7,
+      "allowBulkDeletion": true,
+      "readOnlyMode": false
+    }
+  }
+}

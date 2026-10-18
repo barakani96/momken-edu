@@ -1,0 +1,105 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
+    "module": "ESNext",
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "allowJs": true,
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./*"
+      ],
+      "@schools/domain": [
+        "./packages/domain/src/index.ts"
+      ],
+      "@schools/domain/*": [
+        "./packages/domain/src/*"
+      ],
+      "@schools/infrastructure": [
+        "./packages/infrastructure/src/index.ts"
+      ],
+      "@schools/infrastructure/*": [
+        "./packages/infrastructure/src/*"
+      ],
+      "@schools/core": [
+        "./packages/core/src/index.ts"
+      ],
+      "@schools/core/*": [
+        "./packages/core/src/*"
+      ],
+      "@schools/i18n": [
+        "./packages/i18n/src/index.ts"
+      ],
+      "@schools/i18n/*": [
+        "./packages/i18n/src/*"
+      ],
+      "@schools/ui": [
+        "./packages/ui/src/index.ts"
+      ],
+      "@schools/ui/*": [
+        "./packages/ui/src/*"
+      ],
+      "@schools/portals": [
+        "./packages/portals/src/index.ts"
+      ],
+      "@schools/portals/*": [
+        "./packages/portals/src/*"
+      ],
+      "@schools/modules": [
+        "./packages/modules/src/index.ts"
+      ],
+      "@schools/modules/*": [
+        "./packages/modules/src/*"
+      ],
+      "@schools/module-sis": [
+        "./packages/modules/sis/src/index.ts"
+      ],
+      "@schools/module-sis/*": [
+        "./packages/modules/sis/src/*"
+      ],
+      "@schools/module-academics": [
+        "./packages/modules/academics/src/index.ts"
+      ],
+      "@schools/module-academics/*": [
+        "./packages/modules/academics/src/*"
+      ],
+      "@schools/module-finance": [
+        "./packages/modules/finance/src/index.ts"
+      ],
+      "@schools/module-finance/*": [
+        "./packages/modules/finance/src/*"
+      ],
+      "@schools/module-hr": [
+        "./packages/modules/hr/src/index.ts"
+      ],
+      "@schools/module-hr/*": [
+        "./packages/modules/hr/src/*"
+      ],
+      "@schools/module-library": [
+        "./packages/modules/library/src/index.ts"
+      ],
+      "@schools/module-library/*": [
+        "./packages/modules/library/src/*"
+      ],
+      "@schools/module-admin": [
+        "./packages/modules/admin/src/index.ts"
+      ],
+      "@schools/module-admin/*": [
+        "./packages/modules/admin/src/*"
+      ]
+    },
+    "allowImportingTsExtensions": true,
+    "noEmit": true
+  }
+}

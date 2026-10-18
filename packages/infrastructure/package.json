@@ -1,0 +1,9 @@
+{
+  "name": "@schools/infrastructure",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "description": "Infrastructure repository abstractions and data access contracts for Schools Systems ERP"
+}

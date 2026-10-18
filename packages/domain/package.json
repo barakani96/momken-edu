@@ -1,0 +1,9 @@
+{
+  "name": "@schools/domain",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "description": "Core Domain entities, value objects, schemas, and audit logging contracts for Schools Systems ERP"
+}

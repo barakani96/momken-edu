@@ -1,0 +1,194 @@
+{
+  "id": "finance",
+  "code": "MOD-FIN-01",
+  "name": "Finance & Invoicing",
+  "label": "Finance & Invoicing",
+  "shortName": "Finance",
+  "category": "Institutional Operations",
+  "version": "1.8.0",
+  "status": "active",
+  "description": "Authoritative institutional financial management system for tuition billing, student accounts receivable, payment gateways, fee schedules, and scholarship disbursements.",
+  "icon": "Money",
+  "authoritativeEntities": ["invoices", "payments", "feeStructures", "scholarships"],
+  "primaryEntity": "invoices",
+  "entities": [
+    {
+      "name": "invoices",
+      "label": "Tuition & Fee Invoice",
+      "labelPlural": "Invoices",
+      "isPrimary": true,
+      "icon": "Document",
+      "description": "Student tuition statements, term recurring fees, lab fees, and outstanding balances.",
+      "schema": {
+        "resource": "invoices",
+        "label": "Invoice",
+        "labelPlural": "Invoices",
+        "fields": [
+          { "name": "invoiceNumber", "type": "text", "label": "Invoice Number", "required": true, "colSpan": 6 },
+          { "name": "studentName", "type": "text", "label": "Student Name", "required": true, "colSpan": 6 },
+          { "name": "studentId", "type": "text", "label": "Student ID", "required": true, "colSpan": 6 },
+          { "name": "term", "type": "select", "label": "Academic Term", "required": true, "colSpan": 6, "options": [
+            { "label": "Fall 2026", "value": "Fall 2026" },
+            { "label": "Spring 2027", "value": "Spring 2027" },
+            { "label": "Summer 2026", "value": "Summer 2026" }
+          ]},
+          { "name": "totalAmount", "type": "currency", "label": "Total Amount ($)", "required": true, "colSpan": 6 },
+          { "name": "paidAmount", "type": "currency", "label": "Paid Amount ($)", "colSpan": 6 },
+          { "name": "dueDate", "type": "date", "label": "Due Date", "required": true, "colSpan": 6 },
+          { "name": "status", "type": "select", "label": "Invoice Status", "required": true, "colSpan": 6, "options": [
+            { "label": "Paid", "value": "paid" },
+            { "label": "Partially Paid", "value": "partial" },
+            { "label": "Pending", "value": "pending" },
+            { "label": "Overdue", "value": "overdue" },
+            { "label": "Voided", "value": "voided" }
+          ]},
+          { "name": "notes", "type": "textarea", "label": "Billing Notes", "colSpan": 12 }
+        ]
+      },
+      "columns": [
+        { "key": "invoiceNumber", "header": "Invoice #", "sortable": true, "width": "130px" },
+        { "key": "studentName", "header": "Student", "sortable": true },
+        { "key": "term", "header": "Term", "sortable": true, "width": "120px" },
+        { "key": "totalAmount", "header": "Total ($)", "sortable": true, "width": "110px" },
+        { "key": "paidAmount", "header": "Paid ($)", "sortable": true, "width": "110px" },
+        { "key": "status", "header": "Status", "sortable": true, "width": "120px" },
+        { "key": "dueDate", "header": "Due Date", "sortable": true, "width": "130px" }
+      ],
+      "defaultData": [
+        { "id": "1", "invoiceNumber": "INV-2026-001", "studentId": "STU-1001", "studentName": "Alexander Hayes", "term": "Fall 2026", "totalAmount": 4200, "paidAmount": 4200, "status": "paid", "dueDate": "2026-09-01", "notes": "Full semester tuition and science lab fee." },
+        { "id": "2", "invoiceNumber": "INV-2026-002", "studentId": "STU-1002", "studentName": "Sophia Bennett", "term": "Fall 2026", "totalAmount": 4500, "paidAmount": 2250, "status": "partial", "dueDate": "2026-09-01", "notes": "Tuition installment 1 received." },
+        { "id": "3", "invoiceNumber": "INV-2026-003", "studentId": "STU-1003", "studentName": "Ethan Caldwell", "term": "Fall 2026", "totalAmount": 3900, "paidAmount": 0, "status": "pending", "dueDate": "2026-10-15", "notes": "Pending payment gateway settlement." },
+        { "id": "4", "invoiceNumber": "INV-2026-004", "studentId": "STU-1004", "studentName": "Olivia Martinez", "term": "Fall 2026", "totalAmount": 4200, "paidAmount": 4200, "status": "paid", "dueDate": "2026-09-01", "notes": "Paid in full via ACH transfer." },
+        { "id": "5", "invoiceNumber": "INV-2026-005", "studentId": "STU-1005", "studentName": "Lucas Vance", "term": "Fall 2026", "totalAmount": 4100, "paidAmount": 500, "status": "overdue", "dueDate": "2026-08-25", "notes": "First notice dispatched to guardian." },
+        { "id": "6", "invoiceNumber": "INV-2026-006", "studentId": "STU-1006", "studentName": "Maya Patel", "term": "Fall 2026", "totalAmount": 4600, "paidAmount": 4600, "status": "paid", "dueDate": "2026-09-01", "notes": "Merit scholarship credit applied." }
+      ]
+    },
+    {
+      "name": "payments",
+      "label": "Payment Transaction",
+      "labelPlural": "Payments",
+      "isPrimary": false,
+      "icon": "Purchase",
+      "description": "Cash receipts, credit card authorizations, ACH transactions, and wire transfers.",
+      "schema": {
+        "resource": "payments",
+        "label": "Payment",
+        "labelPlural": "Payments",
+        "fields": [
+          { "name": "transactionId", "type": "text", "label": "Transaction Reference", "required": true, "colSpan": 6 },
+          { "name": "invoiceNumber", "type": "text", "label": "Invoice #", "required": true, "colSpan": 6 },
+          { "name": "payerName", "type": "text", "label": "Payer Name", "required": true, "colSpan": 6 },
+          { "name": "amount", "type": "currency", "label": "Amount ($)", "required": true, "colSpan": 6 },
+          { "name": "method", "type": "select", "label": "Payment Method", "required": true, "colSpan": 6, "options": [
+            { "label": "Credit Card", "value": "Credit Card" },
+            { "label": "ACH / Bank Transfer", "value": "ACH" },
+            { "label": "Wire Transfer", "value": "Wire" },
+            { "label": "Cash / Check", "value": "Check" }
+          ]},
+          { "name": "paymentDate", "type": "date", "label": "Payment Date", "required": true, "colSpan": 6 },
+          { "name": "status", "type": "select", "label": "Status", "required": true, "colSpan": 6, "options": [
+            { "label": "Settled", "value": "settled" },
+            { "label": "Processing", "value": "processing" },
+            { "label": "Failed", "value": "failed" },
+            { "label": "Refunded", "value": "refunded" }
+          ]}
+        ]
+      },
+      "columns": [
+        { "key": "transactionId", "header": "Tx Reference", "sortable": true, "width": "140px" },
+        { "key": "invoiceNumber", "header": "Invoice #", "sortable": true, "width": "130px" },
+        { "key": "payerName", "header": "Payer", "sortable": true },
+        { "key": "amount", "header": "Amount ($)", "sortable": true, "width": "110px" },
+        { "key": "method", "header": "Method", "sortable": true, "width": "130px" },
+        { "key": "status", "header": "Status", "sortable": true, "width": "110px" },
+        { "key": "paymentDate", "header": "Date", "sortable": true, "width": "120px" }
+      ],
+      "defaultData": [
+        { "id": "1", "transactionId": "TX-89210", "invoiceNumber": "INV-2026-001", "payerName": "Robert Hayes", "amount": 4200, "method": "ACH", "status": "settled", "paymentDate": "2026-08-28" },
+        { "id": "2", "transactionId": "TX-89211", "invoiceNumber": "INV-2026-002", "payerName": "Eleanor Bennett", "amount": 2250, "method": "Credit Card", "status": "settled", "paymentDate": "2026-08-30" },
+        { "id": "3", "transactionId": "TX-89212", "invoiceNumber": "INV-2026-004", "payerName": "Carlos Martinez", "amount": 4200, "method": "ACH", "status": "settled", "paymentDate": "2026-08-29" },
+        { "id": "4", "transactionId": "TX-89213", "invoiceNumber": "INV-2026-006", "payerName": "Priya Patel", "amount": 4600, "method": "Wire", "status": "settled", "paymentDate": "2026-08-31" }
+      ]
+    },
+    {
+      "name": "feeStructures",
+      "label": "Fee Schedule",
+      "labelPlural": "Fee Schedules",
+      "isPrimary": false,
+      "icon": "Catalog",
+      "description": "Standard institutional tuition rates, lab fees, technology levies, and activity fees.",
+      "schema": {
+        "resource": "feeStructures",
+        "label": "Fee Structure",
+        "labelPlural": "Fee Structures",
+        "fields": [
+          { "name": "feeCode", "type": "text", "label": "Fee Code", "required": true, "colSpan": 6 },
+          { "name": "name", "type": "text", "label": "Fee Description", "required": true, "colSpan": 6 },
+          { "name": "category", "type": "select", "label": "Category", "required": true, "colSpan": 6, "options": [
+            { "label": "Tuition Base", "value": "Tuition" },
+            { "label": "Laboratory / Material", "value": "Lab" },
+            { "label": "Technology & Facilities", "value": "Tech" },
+            { "label": "Athletics & Activities", "value": "Activities" }
+          ]},
+          { "name": "amount", "type": "currency", "label": "Base Amount ($)", "required": true, "colSpan": 6 },
+          { "name": "frequency", "type": "select", "label": "Billing Frequency", "required": true, "colSpan": 6, "options": [
+            { "label": "Per Term", "value": "Per Term" },
+            { "label": "Per Academic Year", "value": "Annual" },
+            { "label": "One-Time Fee", "value": "One-Time" }
+          ]}
+        ]
+      },
+      "columns": [
+        { "key": "feeCode", "header": "Code", "sortable": true, "width": "120px" },
+        { "key": "name", "header": "Fee Description", "sortable": true },
+        { "key": "category", "header": "Category", "sortable": true, "width": "130px" },
+        { "key": "amount", "header": "Amount ($)", "sortable": true, "width": "110px" },
+        { "key": "frequency", "header": "Frequency", "sortable": true, "width": "130px" }
+      ],
+      "defaultData": [
+        { "id": "1", "feeCode": "FEE-TUIT-STD", "name": "Standard Secondary Tuition", "category": "Tuition", "amount": 3800, "frequency": "Per Term" },
+        { "id": "2", "feeCode": "FEE-LAB-SCI", "name": "Science & Physics Lab Levy", "category": "Lab", "amount": 350, "frequency": "Per Term" },
+        { "id": "3", "feeCode": "FEE-TECH-SUB", "name": "Campus 1:1 Laptop & LMS Access", "category": "Tech", "amount": 250, "frequency": "Annual" },
+        { "id": "4", "feeCode": "FEE-ATHL-GEN", "name": "Interscholastic Athletics & Insurance", "category": "Activities", "amount": 200, "frequency": "Annual" }
+      ]
+    },
+    {
+      "name": "scholarships",
+      "label": "Scholarship & Aid Grant",
+      "labelPlural": "Scholarships & Aid",
+      "isPrimary": false,
+      "icon": "Award",
+      "description": "Merit scholarships, need-based tuition waivers, athletic grants, and endowment funds.",
+      "schema": {
+        "resource": "scholarships",
+        "label": "Scholarship",
+        "labelPlural": "Scholarships",
+        "fields": [
+          { "name": "awardCode", "type": "text", "label": "Award Code", "required": true, "colSpan": 6 },
+          { "name": "awardName", "type": "text", "label": "Scholarship Name", "required": true, "colSpan": 6 },
+          { "name": "type", "type": "select", "label": "Grant Type", "required": true, "colSpan": 6, "options": [
+            { "label": "Merit Distinction", "value": "Merit" },
+            { "label": "Need-Based Financial Aid", "value": "Need" },
+            { "label": "Endowment / Alumni Grant", "value": "Endowment" },
+            { "label": "Athletic Excellence", "value": "Athletic" }
+          ]},
+          { "name": "coveragePercent", "type": "number", "label": "Tuition Coverage (%)", "required": true, "colSpan": 6 },
+          { "name": "recipientCount", "type": "number", "label": "Active Recipients", "colSpan": 6 }
+        ]
+      },
+      "columns": [
+        { "key": "awardCode", "header": "Award Code", "sortable": true, "width": "130px" },
+        { "key": "awardName", "header": "Scholarship Title", "sortable": true },
+        { "key": "type", "header": "Grant Type", "sortable": true, "width": "140px" },
+        { "key": "coveragePercent", "header": "Coverage (%)", "sortable": true, "width": "130px" },
+        { "key": "recipientCount", "header": "Recipients", "sortable": true, "width": "110px" }
+      ],
+      "defaultData": [
+        { "id": "1", "awardCode": "SCH-PRES-MERIT", "awardName": "Presidential Academic Distinction", "type": "Merit", "coveragePercent": 50, "recipientCount": 18 },
+        { "id": "2", "awardCode": "SCH-NEED-AID", "awardName": "Opportunity Grant Endowment", "type": "Need", "coveragePercent": 75, "recipientCount": 32 },
+        { "id": "3", "awardCode": "SCH-STEM-LEAD", "awardName": "Future in STEM Fellowship", "type": "Merit", "coveragePercent": 40, "recipientCount": 12 },
+        { "id": "4", "awardCode": "SCH-ATHL-HONOR", "awardName": "Varsity Leadership Grant", "type": "Athletic", "coveragePercent": 35, "recipientCount": 15 }
+      ]
+    }
+  ]
+}

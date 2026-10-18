@@ -1,0 +1,9 @@
+{
+  "name": "@schools/portals",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "description": "Role-isolated institutional portals (Student, Instructor, Guardian, SIS Registrar, Superadmin Console)"
+}

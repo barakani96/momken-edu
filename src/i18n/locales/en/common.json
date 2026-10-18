@@ -1,0 +1,171 @@
+{
+  "appTitle": "Education Management Platform",
+  "login": {
+    "title": "Log in",
+    "submit": "Log in",
+    "welcome": "Welcome back"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome to Education Management Platform",
+    "message": "The application foundation is ready.",
+    "submessage": "Business modules will be implemented in later phases.",
+    "tech": "React, Vite, React Router v7, i18next, IBM Carbon Design System, Mock API"
+  },
+  "shell": {
+    "skipToContent": "Skip to main content",
+    "openMenu": "Open navigation menu",
+    "closeMenu": "Close navigation menu",
+    "brandName": "Schools Systems",
+    "prefix": "IBM",
+    "refresh": "Refresh content",
+    "pageLoading": "Loading page...",
+    "students": "Students",
+    "language": "Switch language",
+    "switchToEnglish": "Switch to English",
+    "switchToArabic": "Switch to Arabic",
+    "commandSearch": "Command Search (Cmd+K / Ctrl+K)",
+    "headerLabel": "Platform Header",
+    "sideNavLabel": "Side Navigation",
+    "theme": "Switch theme",
+    "userMenu": "User profile",
+    "logout": "Log out",
+    "nav": {
+      "main": "Main navigation",
+      "dashboard": "Dashboard",
+      "showcase": "UI Showcase",
+      "sis": "Student Information System",
+      "finance": "Finance & Billing",
+      "hr": "HR & Faculty",
+      "library": "Library & Resources",
+      "academics": "Academics",
+      "administration": "Administration",
+      "reports": "Reports",
+      "students": "Students",
+      "teachers": "Teachers",
+      "classes": "Classes",
+      "courses": "Courses",
+      "attendance": "Attendance",
+      "learning": "Learning",
+      "users": "Users",
+      "settings": "Settings",
+      "roles": "Roles"
+    },
+    "utilities": {
+      "notifications": "Notifications",
+      "help": "Help & Support",
+      "settings": "System Settings",
+      "userProfile": "Account Profile",
+      "switcher": "Switch Applications"
+    },
+    "panels": {
+      "close": "Close panel",
+      "notifications": {
+        "title": "Notifications",
+        "empty": "No unread notifications",
+        "markAllRead": "Mark all as read",
+        "item1Title": "Term 1 Reports Published",
+        "item1Time": "10 minutes ago",
+        "item2Title": "New Enrollment Applications (4)",
+        "item2Time": "1 hour ago",
+        "item3Title": "Attendance sync completed",
+        "item3Time": "3 hours ago"
+      },
+      "help": {
+        "title": "Help & Support",
+        "docsTitle": "Documentation & Guides",
+        "docsDesc": "Explore system manuals, configuration guides, and API specs.",
+        "supportTitle": "Contact Technical Support",
+        "supportDesc": "Submit an urgent ticket or chat with support specialists.",
+        "shortcutsTitle": "Keyboard Shortcuts",
+        "shortcutsDesc": "Press '/' to search, 'Esc' to dismiss active panels."
+      },
+      "settings": {
+        "title": "System Settings",
+        "appearance": "Appearance & Theme",
+        "themeLight": "Light Theme (White)",
+        "themeDark": "Dark Theme (Gray 100)",
+        "language": "Language & Direction",
+        "langEn": "English (LTR)",
+        "langAr": "العربية (RTL)",
+        "notificationsPref": "Notification Preferences",
+        "emailAlerts": "Email alerts for critical events"
+      },
+      "user": {
+        "title": "User Account",
+        "signedInAs": "Signed in as",
+        "role": "System Administrator",
+        "profileDetails": "View Profile & Permissions",
+        "switchSchool": "Switch Active School",
+        "logout": "Log out"
+      },
+      "switcher": {
+        "title": "Schools Systems",
+        "frequentlyUsed": "Frequently Used",
+        "allApps": "All Applications",
+        "schools": "Schools Management",
+        "students": "Students & Enrollment",
+        "teachers": "Teachers & Staff",
+        "attendance": "Daily Attendance",
+        "learning": "Learning & Curricula",
+        "administration": "Administration & Security",
+        "reports": "Interactive Reports"
+      }
+    }
+  },
+  "ui": {
+    "empty": {
+      "noData": "No data available",
+      "noResults": "No results found",
+      "filteredEmpty": "No items match your filters",
+      "description": "There is no data to display here at the moment."
+    },
+    "error": {
+      "title": "An error occurred",
+      "network": "Network connection failed",
+      "permission": "Permission denied",
+      "description": "We could not load the requested information."
+    },
+    "loading": "Loading data...",
+    "saving": "Saving changes...",
+    "saved": "Saved successfully",
+    "actions": {
+      "save": "Save",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "edit": "Edit",
+      "create": "Create",
+      "close": "Close",
+      "retry": "Retry"
+    },
+    "pagination": {
+      "itemsPerPage": "Items per page:",
+      "pageRange": "{{start}}–{{end}} of {{total}} items",
+      "page": "Page"
+    }
+  },
+  "notfound": {
+    "title": "404 - Not Found",
+    "message": "The page you are looking for does not exist.",
+    "back": "Go to Dashboard"
+  },
+  "admin": {
+    "title": "Admin Console",
+    "dashboard": "Admin Dashboard",
+    "generalSettings": "General System Settings",
+    "identityAndAccess": "Identity & Access Management",
+    "users": "User Directory",
+    "roles": "Roles Matrix",
+    "groups": "Groups Manager",
+    "sessions": "Active Sessions Monitor",
+    "mfa": "Multi-Factor Authentication",
+    "sso": "SSO Providers Integration",
+    "serviceAccounts": "Programmatic Service Accounts",
+    "complianceAndA11y": "Automated Accessibility Auditor",
+    "featureFlags": "Beta Feature Management",
+    "auditLogs": "Security & Audit Logs",
+    "backgroundJobs": "Automated Batch Jobs",
+    "tenantOrganizations": "Multi-Tenancy Branches",
+    "analyticsAndReports": "Compliance Analytics Reports"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Education Management Platform",
+  "description": "Comprehensive Student Information System (SIS) with full student lifecycle management, registration wizard, 360 profile, guardian hub, placements, term enrollments, campus transfers, clearance, graduation, document vault, and bilingual Arabic/English support powered by Carbon Design System.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
